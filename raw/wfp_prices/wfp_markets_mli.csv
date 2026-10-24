@@ -1,0 +1,243 @@
+market_id,market,countryiso3,admin1,admin2,latitude,longitude
+247,Bamako,MLI,Bamako,Bamako,12.65,-8
+248,Gao,MLI,Gao,Gao,16.27,-0.04
+249,Kayes Centre,MLI,Kayes,Kayes,14.44,-11.43
+250,Kidal,MLI,Kidal,Kidal,18.44,1.41
+251,Koulikoro Ba,MLI,Koulikoro,Koulikoro,12.89,-7.54
+252,Mopti Digue,MLI,Mopti,Mopti,14.49,-4.19
+253,Niarela,MLI,Bamako,Bamako,12.65,-8
+255,Tombouctou,MLI,Tombouctou,Tombouctou,16.77,-3.01
+256,Sikasso Centre,MLI,Sikasso,Sikasso,11.31,-5.67
+857,Ansongo,MLI,Gao,Ansongo,15.67,0.5
+858,Badalabougou,MLI,Bamako,Bamako,12.62,-7.98
+859,Badinko,MLI,Kayes,Kita,12.97,-9.22
+860,Bandiagara,MLI,Mopti,Bandiagara,14.35,-3.61
+861,Bankass,MLI,Mopti,Bankass,14.08,-3.52
+862,Bla,MLI,Segou,Bla,12.95,-5.76
+863,Bougouni,MLI,Sikasso,Bougouni,11.42,-7.48
+864,Diakawèrè,MLI,Segou,Niono,14.44,-6
+865,Diallassagou,MLI,Mopti,Bankass,13.74,-3.63
+866,Dibida,MLI,Bamako,Bamako,12.65,-8
+867,Diéma,MLI,Kayes,Diema,14.54,-9.19
+868,Dioïla,MLI,Koulikoro,Dioila,12.48,-6.79
+869,Dioro,MLI,Segou,Baroueli,12.83,-6.5
+870,Diré,MLI,Tombouctou,Dire,16.27,-3.4
+871,Djenne,MLI,Mopti,Djenne,13.9,-4.56
+872,Djikoroni,MLI,Bamako,Bamako,12.6,-8.01
+873,Dogofri,MLI,Segou,Niono,14.81,-6.02
+874,Dougouolo,MLI,Segou,Bla,12.93,-5.57
+875,Fadjiguila,MLI,Bamako,Bamako,12.65,-8
+876,Faladié,MLI,Bamako,Bamako,12.58,-7.95
+877,Fana,MLI,Koulikoro,Koulikoro,13.19,-7.67
+878,Fatiné,MLI,Segou,Segou,13.57,-5.39
+879,Kayes N'Dy,MLI,Kayes,Kayes,14.44,-11.43
+880,Kayes Plateau,MLI,Kayes,Kayes,14.44,-11.43
+881,Kita,MLI,Kayes,Kita,13.03,-9.49
+882,Koulikoro Gare,MLI,Koulikoro,Koulikoro,12.89,-7.54
+883,Koulogon,MLI,Mopti,Bankass,13.74,-3.63
+884,Koumantou,MLI,Sikasso,Bougouni,11.41,-6.85
+885,Koury,MLI,Sikasso,Yorosso,12.18,-4.8
+886,Koutiala,MLI,Sikasso,Koutiala,12.39,-5.46
+887,Lafiabougou,MLI,Bamako,Bamako,12.64,-8.04
+888,Lére,MLI,Tombouctou,Niafunke,15.72,-4.9
+889,Loulouni,MLI,Sikasso,Kadiolo,10.92,-5.67
+890,Magnambougou,MLI,Bamako,Bamako,12.62,-7.95
+891,Medine,MLI,Bamako,Bamako,12.65,-8
+892,Monimpébougou,MLI,Segou,Macina,14.15,-5.52
+893,Mopti Guangal,MLI,Mopti,Mopti,14.49,-4.19
+894,M'Pèssoba,MLI,Sikasso,Koutiala,12.67,-5.72
+895,Nara,MLI,Koulikoro,Nara,15.17,-7.28
+896,Niamakoro,MLI,Bamako,Bamako,12.58,-7.96
+897,Niono,MLI,Segou,Niono,14.25,-5.99
+898,Nioro,MLI,Kayes,Nioro,15.23,-9.59
+899,Ouolofobougou,MLI,Bamako,Bamako,12.65,-8.02
+900,San,MLI,Segou,San,13.3,-4.9
+901,Ségou Centre,MLI,Segou,Segou,13.45,-6.27
+902,Ségou Château,MLI,Segou,Segou,13.43,-6.22
+903,Shiango,MLI,Segou,Niono,14.4,-5.98
+904,Sikasso Médine,MLI,Sikasso,Sikasso,11.31,-5.67
+905,Sirakorola,MLI,Koulikoro,Koulikoro,13.29,-7.57
+906,Sogoniko,MLI,Bamako,Bamako,12.61,-7.96
+907,Sokolo,MLI,Segou,Niono,14.73,-6.12
+908,Tonka,MLI,Tombouctou,Goundam,16.13,-3.75
+909,Touna,MLI,Segou,Bla,13.12,-5.83
+910,Zangasso,MLI,Sikasso,Sikasso,11.58,-6.03
+911,Macina,MLI,Segou,Macina,14,-5.73
+1682,Kati,MLI,Koulikoro,Kati,12.75,-8.07
+1812,Kouremalé,MLI,Koulikoro,Kangaba,11.95,-8.78
+1813,Ouelessebougou,MLI,Koulikoro,Kati,11.99,-7.91
+1814,Kolokani,MLI,Koulikoro,Kolokani,13.58,-8.03
+1815,Yanfolila,MLI,Sikasso,Yanfolila,11.18,-8.15
+1816,Yorosso,MLI,Sikasso,Yorosso,12.36,-4.78
+1817,Koro,MLI,Mopti,Koro,14.06,-3.08
+1818,Kourouma,MLI,Segou,Niono,14.65,-6
+1819,Kiffosso,MLI,Sikasso,Yorosso,12.5,-4.9
+1932,Youwarou,MLI,Mopti,Youwarou,15.38,-4.26
+2011,Anderamboukane,MLI,Gao,Menaka,15.42,3.02
+2012,Bambara Maoude,MLI,Tombouctou,Tombouctou,16.77,-2.99
+2013,Boni,MLI,Mopti,Douentza,15.08,-2.23
+2014,Bourem,MLI,Gao,Bourem,16.95,-0.35
+2015,Djebok,MLI,Gao,Gao,16.34,0.28
+2016,Forgho,MLI,Gao,Gao,16.51,-0.07
+2017,Haoussa Foulane,MLI,Gao,Gao,15.99,0.13
+2018,Menaka,MLI,Gao,Menaka,15.92,2.4
+2019,Ouani,MLI,Gao,Bourem,16.72,-0.26
+2020,Ouattagouna,MLI,Gao,Ansongo,15.18,0.72
+2021,Taboye,MLI,Gao,Bourem,16.72,-0.26
+2022,Temera,MLI,Gao,Bourem,17,-0.95
+2023,Tessalit,MLI,Kidal,Tessalit,20.2,1.02
+2024,Diafarabé,MLI,Mopti,Tenenkou,14.14,-5.02
+2025,Diondiori,MLI,Mopti,Tenenkou,14.92,-4.59
+2026,Douentza,MLI,Mopti,Douentza,15,-2.95
+2027,Gathi Loumo,MLI,Mopti,Youwarou,15.47,-4.61
+2028,Hombori,MLI,Mopti,Douentza,15.28,-1.7
+2029,Kikara,MLI,Mopti,Douentza,15,-2.95
+2030,Sevaré,MLI,Mopti,Mopti,14.52,-4.1
+2031,Tenenkou,MLI,Mopti,Tenenkou,14.45,-4.92
+2032,Toguere Coumbe,MLI,Mopti,Tenenkou,14.92,-4.59
+2033,Bankoma,MLI,Tombouctou,Gourma-Rharous,16.81,-2.06
+2034,Bourem Inaly,MLI,Tombouctou,Tombouctou,16.69,-2.85
+2035,Douekire,MLI,Tombouctou,Goundam,16.57,-3.37
+2036,Gounanbougou,MLI,Tombouctou,Niafunke,15.95,-3.58
+2037,Goundam,MLI,Tombouctou,Goundam,16.42,-3.66
+2038,Gourma Rharous,MLI,Tombouctou,Gourma-Rharous,16.88,-1.92
+2039,Niafunké,MLI,Tombouctou,Niafunke,15.93,-3.98
+2040,Sareyamou,MLI,Tombouctou,Dire,16.09,-3.24
+2515,Abeibara,MLI,Kidal,Kidal,18.44,1.42
+2516,Adjelhoc,MLI,Kidal,Kidal,18.44,1.41
+2517,Amachach,MLI,Kidal,Kidal,18.44,1.41
+2518,Annefif,MLI,Kidal,Kidal,18.45,1.4
+2519,Attara,MLI,Tombouctou,Niafunke,15.66,-4.36
+2520,Tin essako,MLI,Kidal,Kidal,18.44,1.42
+2521,Échelle,MLI,Tombouctou,Goundam,16.27,-3.94
+3631,N'gouma,MLI,Mopti,Douentza,15.64,-3.37
+3632,N'tillit,MLI,Gao,Gao,15.52,-0.48
+3633,Agazrahane,MLI,Gao,Menaka,15.91,2.4
+3634,Bamba,MLI,Gao,Bourem,17,-0.96
+3635,Diguiciré,MLI,Mopti,Tenenkou,14.67,-5.07
+3636,Djoulouna,MLI,Mopti,Douentza,15.01,-2.95
+3637,Ber,MLI,Tombouctou,Tombouctou,16.84,-2.52
+3638,Aglal,MLI,Tombouctou,Tombouctou,16.76,-3
+3639,Bintagoungou,MLI,Tombouctou,Goundam,16.42,-3.66
+3640,Gossi,MLI,Tombouctou,Gourma-Rharous,15.82,-1.31
+3641,Dangha,MLI,Tombouctou,Dire,16.47,-3.14
+3642,Banamba,MLI,Koulikoro,Banamba,13.55,-7.45
+3643,Bafoulabé,MLI,Kayes,Bafoulabe,13.8,-10.83
+3644,Kéniéba,MLI,Kayes,Kayes,14.48,-11.12
+3645,Kolondièba,MLI,Sikasso,Kolondieba,11.08,-6.88
+3646,Kangaba,MLI,Koulikoro,Kangaba,11.94,-8.41
+3731,Timissa,MLI,Segou,Tominian,13.83,-4.21
+3732,Tominian,MLI,Segou,Tominian,13.29,-4.59
+3733,Diabaly,MLI,Segou,Niono,14.7,-6.02
+4105,Yélimané,MLI,Kayes,Yelimane,15.12,-10.58
+4106,Baraoueli,MLI,Segou,Baroueli,13.07,-6.84
+6027,Siribala Coro,MLI,Segou,Niono,14.04,-6.11
+6908,Founia,MLI,Kayes,Kita,12.89,-9.46
+6909,Kobri,MLI,Kayes,Kita,13.12,-9.9
+6910,Moromoro,MLI,Kayes,Nioro,14.9,-9.61
+6911,Namala,MLI,Kayes,Kita,13.36,-9.39
+6912,Sagabari,MLI,Kayes,Kita,12.58,-9.8
+6913,Sébété,MLI,Koulikoro,Kolokani,13.69,-8.38
+6914,Kimparana,MLI,Segou,San,12.84,-4.93
+6915,Dogo,MLI,Sikasso,Bougouni,11.89,-7.33
+6916,Manankoro,MLI,Sikasso,Bougouni,10.46,-7.44
+6917,Kadiolo,MLI,Sikasso,Kadiolo,10.55,-5.76
+6918,Zégoua,MLI,Sikasso,Kadiolo,10.49,-5.65
+6919,Konségéla,MLI,Sikasso,Koutiala,12.4,-5.88
+6920,Molobala,MLI,Sikasso,Koutiala,12.17,-5.33
+6921,Tèguèna,MLI,Sikasso,Koutiala,12.67,-5.75
+6922,Mamassoni,MLI,Sikasso,Sikasso,11.35,-5.67
+6923,Niena,MLI,Sikasso,Sikasso,11.42,-6.35
+6924,Sékorolé,MLI,Sikasso,Yanfolila,11.32,-8.26
+8704,Nossombougou,MLI,Koulikoro,Kolokani,13.1,-7.93
+8715,N'Tahaka,MLI,Gao,Gao,16.2,-0.48
+8716,Amachach-Tessalit,MLI,Kidal,Tessalit,20.26,0.99
+10242,Konna,MLI,Mopti,Mopti,14.95,-3.9
+10243,Yirimandio,MLI,Koulikoro,Kati,12.61,-7.91
+10719,Tessit,MLI,Gao,Ansongo,15.23,0.29
+11199,Wabaria,MLI,Gao,Gao,15.62,-0.49
+11200,Almoustrat,MLI,Gao,Bourem,17.1,-0.97
+11201,Bara,MLI,Gao,Ansongo,15.23,0.25
+11202,Tassiga,MLI,Gao,Ansongo,15.13,0.24
+11203,Fafa,MLI,Gao,Ansongo,15.3,0.22
+11204,Inkadewan,MLI,Gao,Menaka,15.92,2.1
+11205,Indeliwane,MLI,Gao,Menaka,15.82,2.4
+11206,Tedjarere,MLI,Gao,Menaka,15.92,2.5
+11207,Toya,MLI,Tombouctou,Tombouctou,16.87,-3.01
+11208,Beragoungou,MLI,Tombouctou,Tombouctou,16.77,-3.11
+11209,Soboundou,MLI,Tombouctou,Niafunke,15.83,-3.98
+11210,Dari,MLI,Tombouctou,Niafunke,15.78,-3.98
+11211,Soumpi,MLI,Tombouctou,Niafunke,15.93,-3.78
+11212,Dofana,MLI,Tombouctou,Niafunke,15.95,-3.98
+11213,Sibo,MLI,Tombouctou,Niafunke,15.93,-3.68
+11214,Fittouga,MLI,Tombouctou,Niafunke,15.83,-3.68
+11215,Mékoreye,MLI,Tombouctou,Goundam,16.13,-3.76
+11216,Mékoreye,MLI,Tombouctou,Goundam,16.13,-3.76
+11217,Garbakoira,MLI,Tombouctou,Dire,16.09,-3.34
+11218,Tindirma,MLI,Tombouctou,Dire,16.19,-3.24
+11219,Kirchamba,MLI,Tombouctou,Dire,16.29,-3.24
+11220,Bourem Sidi Amar,MLI,Tombouctou,Dire,16.09,-3.14
+11221,Benguel,MLI,Tombouctou,Gourma-Rharous,16.88,-1.82
+11222,Banikane,MLI,Tombouctou,Gourma-Rharous,16.78,-1.92
+11223,Seréré,MLI,Tombouctou,Gourma-Rharous,16.78,-1.82
+11224,Minkiri,MLI,Tombouctou,Gourma-Rharous,16.68,-1.92
+11225,Mondoro,MLI,Mopti,Douentza,15.64,-3.47
+11226,Kora,MLI,Mopti,Tenenkou,14.92,-4.49
+11227,Telley,MLI,Mopti,Tenenkou,14.92,-4.69
+11228,Madougou,MLI,Mopti,Koro,14.16,-3.08
+11229,Pelkh Maoudé,MLI,Mopti,Koro,14.06,-3.18
+11230,Youdiou,MLI,Mopti,Koro,14.16,-3.18
+11231,Koporopen Na,MLI,Mopti,Koro,14.06,-3.28
+11232,Koporopen,MLI,Mopti,Koro,14.16,-3.28
+11233,Doundé,MLI,Mopti,Bankass,13.84,-3.63
+11234,Socoura,MLI,Mopti,Mopti,14.52,-4.11
+11235,Somadougou,MLI,Mopti,Mopti,14.62,-4.1
+11236,Fatoma,MLI,Mopti,Mopti,14.42,-4.1
+11237,Tenga,MLI,Mopti,Tenenkou,14.72,-4.49
+11238,Keke,MLI,Mopti,Djenne,13.8,-4.56
+11239,Yebe,MLI,Mopti,Djenne,13.9,-4.66
+11240,Konio,MLI,Mopti,Djenne,13.7,-4.56
+11241,Mougna,MLI,Mopti,Djenne,13.95,-4.56
+11242,Sofara,MLI,Mopti,Djenne,13.9,-4.36
+11243,Dimbal,MLI,Mopti,Bankass,13.64,-3.63
+11244,Kani Kombolé,MLI,Mopti,Bankass,13.54,-3.63
+11245,Ambiri,MLI,Mopti,Youwarou,15.48,-4.26
+11246,Guidio,MLI,Mopti,Youwarou,15.39,-4.26
+11247,Sakara,MLI,Mopti,Youwarou,15.38,-4.36
+11248,Dourou,MLI,Mopti,Bandiagara,14.35,-3.51
+11249,Kani,MLI,Mopti,Bandiagara,14.45,-3.61
+11250,Koundialan,MLI,Mopti,Bandiagara,14.35,-3.71
+11251,Kendié,MLI,Mopti,Bandiagara,14.25,-3.61
+11252,Sangha,MLI,Mopti,Bandiagara,14.35,-3.81
+11253,Tamani,MLI,Segou,Baroueli,12.83,-6.4
+11254,Konobougou,MLI,Segou,Baroueli,12.83,-6.7
+11255,Dougoufé,MLI,Segou,Baroueli,12.73,-6.5
+11256,Nianzana,MLI,Segou,Baroueli,12.83,-6.6
+11257,Diena,MLI,Segou,Bla,13.13,-5.83
+11258,Dankoumana,MLI,Segou,Bla,13.12,-5.93
+11259,Wassasso,MLI,Segou,Bla,13.12,-5.63
+11260,Kokry,MLI,Segou,Macina,14.16,-5.52
+11261,Kouna,MLI,Segou,Macina,14.13,-5.52
+11262,Kolongo,MLI,Segou,Macina,14.35,-5.52
+11263,Markala,MLI,Segou,Segou,13.43,-6.12
+11264,Konodimini,MLI,Segou,Segou,13.33,-6.22
+11265,Dougabougou,MLI,Segou,Segou,13.53,-6.22
+11266,Cinzana gare,MLI,Segou,Segou,13.43,-6.26
+11267,Tene,MLI,Segou,San,13.2,-4.9
+11268,Yangasso,MLI,Segou,San,13.3,-4.8
+11269,Diéli,MLI,Segou,San,13.35,-4.9
+11270,Baramandougou,MLI,Segou,San,13.38,-4.9
+11271,Benena,MLI,Segou,Tominian,13.19,-4.59
+11272,Yasso,MLI,Segou,Tominian,13.11,-4.59
+11273,Mankiakuy,MLI,Segou,Tominian,13.29,-4.6
+11274,Fangasso,MLI,Segou,Tominian,13.29,-4.69
+11275,Ouan,MLI,Segou,Tominian,13.29,-4.5
+11276,Aguelhok,MLI,Kidal,Tessalit,19.16,1.04
+11277,Yirimadio,MLI,Bamako,Bamako,12.68,-7.96
+11278,Zantibougou,MLI,Sikasso,Bougouni,10.46,-7.54
+11279,Kébila,MLI,Sikasso,Kolondieba,11.08,-6.78
+11720,Dianke,MLI,Mopti,Mopti,14.54,-4.06
+11721,Tin Aicha,MLI,Tombouctou,Goundam,16.42,-3.67
+11765,Diero,MLI,Segou,Baroueli,12.92,-6.76
+11834,N'gorkou,MLI,Tombouctou,Niafunke,15.83,-3.7
+12252,Haibongo,MLI,Tombouctou,Dire,16.27,-3.41

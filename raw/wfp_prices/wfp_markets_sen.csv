@@ -1,0 +1,80 @@
+market_id,market,countryiso3,admin1,admin2,latitude,longitude
+405,Bakel,SEN,Tambacounda,Bakel,14.9,-12.46
+406,Bambey,SEN,Diourbel,Bambey,14.7,-16.46
+407,Bignona,SEN,Ziguinchor,Bignona,12.81,-16.23
+408,Castors,SEN,Dakar,Dakar,14.73,-17.45
+409,Dagana,SEN,Saint Louis,Dagana,16.48,-15.6
+410,Dakar,SEN,Dakar,Dakar,14.68,-17.45
+411,Diakhao,SEN,Fatick,Fatick,14.47,-16.3
+412,Diaobe,SEN,Kolda,Kolda,12.7,-14.4
+413,Diourbel,SEN,Diourbel,Diourbel,14.65,-16.23
+414,Fatick,SEN,Fatick,Fatick,14.33,-16.4
+415,Gossas,SEN,Fatick,Fatick,14.5,-16.23
+416,Gouille Mbeuth,SEN,Louga,Louga,15.67,-16.03
+417,Kaffrine,SEN,Kaffrine,Kaffrine,14.1,-15.55
+418,Kaolack,SEN,Kaolack,Kaolack,14.16,-16.07
+419,Kedougou,SEN,Kedougou,Kedougou,12.48,-11.95
+420,Keur I. Yacine,SEN,Fatick,Foundiougne,13.87,-16.24
+421,Kolda,SEN,Kolda,Kolda,12.88,-14.95
+422,Koungueul,SEN,Kaffrine,Koungheul,13.98,-14.8
+423,Kouthiaba,SEN,Tambacounda,Koumpentoum,14.18,-14.47
+424,Louga,SEN,Louga,Louga,15.62,-16.22
+425,Mabo,SEN,Kaffrine,Birkelane,13.92,-15.68
+426,Matam,SEN,Matam,Matam,15.62,-13.33
+427,Mbafaye,SEN,Thies,Mbour,14.57,-16.78
+428,Mbar,SEN,Fatick,Gossas,14.54,-15.76
+429,Mereto,SEN,Tambacounda,Koumpentoum,13.82,-14.45
+430,Mpal,SEN,Saint Louis,Saint Louis,15.91,-16.26
+431,Ndiagne,SEN,Louga,Kebemer,15.1,-15.96
+432,Ndindy,SEN,Diourbel,Diourbel,14.88,-16.22
+433,Orkodiere,SEN,Matam,Kanel,15.28,-12.96
+434,Ourossogui,SEN,Matam,Matam,15.6,-13.32
+435,Oussouye,SEN,Ziguinchor,Oussouye,12.48,-16.55
+436,Passy,SEN,Fatick,Foundiougne,13.98,-16.27
+437,Porokhane,SEN,Kaolack,Nioro Du Rip,13.7,-15.83
+438,Sagatta,SEN,Louga,Kebemer,15.28,-16.17
+439,Sare Yoba,SEN,Kolda,Kolda,12.77,-15.11
+440,Saint-Louis,SEN,Saint Louis,Saint Louis,16.02,-16.49
+441,Tambacounda,SEN,Tambacounda,Tambacounda,13.75,-13.76
+442,Thiaroye,SEN,Dakar,Pikine,14.74,-17.38
+443,Thies,SEN,Thies,Thies,14.79,-16.93
+444,Thille Boubacar,SEN,Saint Louis,Podor,16.52,-15.08
+445,Thilmakha,SEN,Thies,Tivaoune,15.03,-16.25
+446,Thiodaye,SEN,Matam,Matam,15.99,-13.66
+447,Tilene,SEN,Dakar,Dakar,14.68,-17.46
+448,Touba,SEN,Diourbel,Mbacke,14.85,-15.88
+449,Touba Toul,SEN,Thies,Thies,14.82,-16.67
+450,Zigiunchor,SEN,Ziguinchor,Ziguinchor,12.58,-16.27
+451,Ndrame Escale,SEN,Kaolack,Nioro Du Rip,13.8,-16.17
+452,Sedhiou,SEN,Sedhiou,Sedhiou,12.71,-15.56
+453,Dioli Mandakh,SEN,Kaffrine,Kaffrine,13.98,-15.33
+454,Dodel,SEN,Saint Louis,Podor,16.49,-14.43
+455,Saint-Maur,SEN,Ziguinchor,Ziguinchor,12.58,-16.27
+456,Velingara,SEN,Matam,Ranerou,15,-14.67
+457,Gueule Tapee,SEN,Dakar,Dakar,14.68,-17.46
+697,N'Doffane,SEN,Kaolack,Kaolack,13.92,-15.93
+698,Birkelane,SEN,Kaffrine,Birkelane,14.13,-15.75
+699,Diama Gadio,SEN,Kaffrine,Birkelane,13.79,-15.42
+700,Sandjara,SEN,Diourbel,Bambey,14.7,-16.43
+1397,Galoya,SEN,Saint Louis,Podor,16.07,-13.85
+1398,Rosso,SEN,Saint Louis,Dagana,16.5,-15.82
+1542,Salémata,SEN,Kedougou,Salemata,12.63,-12.82
+1543,Mako,SEN,Kedougou,Kedougou,12.86,-12.35
+1544,Missirah,SEN,Fatick,Foundiougne,13.68,-16.5
+5233,Touba Mourid,SEN,Fatick,Foundiougne,13.8,-16.33
+5234,Ross Béthio,SEN,Saint Louis,Dagana,16.28,-16.14
+5839,Thiadiaye,SEN,Thies,Mbour,14.42,-16.7
+5840,Wak Ngouna,SEN,Kaolack,Nioro Du Rip,13.76,-16.06
+5843,Saraya,SEN,Kedougou,Saraya,12.84,-11.76
+5844,Ranerou,SEN,Matam,Ranerou,15.3,-13.96
+5845,Ndioum,SEN,Saint Louis,Podor,16.51,-14.65
+5847,Keur Ayib,SEN,Kaolack,Nioro Du Rip,13.6,-15.6
+12084,BAMBEY SERERE,SEN,Diourbel,Bambey,14.71,-16.49
+12085,Ndangalma,SEN,Diourbel,Bambey,14.73,-16.57
+12086,Ndoumbé DIOP,SEN,Diourbel,Diourbel,14.65,-16.23
+12087,SADIO,SEN,Diourbel,Mbacke,14.8,-15.55
+12088,TOUBA GARE BOU NDAW,SEN,Diourbel,Mbacke,14.86,-15.87
+12089,DIAMAGADIO,SEN,Kaolack,Guinguineo,14.13,-15.88
+12090,GUINGUINEO,SEN,Kaolack,Guinguineo,14.27,-15.95
+12091,FONGOLIMBI,SEN,Kedougou,Kedougou,12.42,-12
+12092,DINDEFELO,SEN,Kedougou,Kedougou,12.38,-12.32

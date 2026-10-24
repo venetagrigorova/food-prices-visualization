@@ -1,0 +1,38 @@
+hdx_dataset,file,license,source_url,bytes
+# downloaded,2026-10-24,,,
+cadre-harmonise,cadre_harmonise/cadre_harmonise_caf_ipc_mars26.xlsx,Creative Commons Attribution International (CC BY),https://data.humdata.org/dataset/cadre-harmonise,5825237
+cadre-harmonise,cadre_harmonise/consolidation-of-ch-data-2014-march-2023-en.pdf,Creative Commons Attribution International (CC BY),https://data.humdata.org/dataset/cadre-harmonise,273354
+wfp-food-prices-for-mali,wfp_prices/wfp_food_prices_mli.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/wfp-food-prices-for-mali,15583832
+wfp-food-prices-for-mali,wfp_prices/wfp_markets_mli.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/wfp-food-prices-for-mali,11071
+ucdp-data-for-mali,ucdp_conflict/conflict_data_mli.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/ucdp-data-for-mali,1838580
+mli-rainfall-subnational,rainfall/mli-rainfall-subnat-full.csv,Creative Commons Attribution International (CC BY),https://data.humdata.org/dataset/mli-rainfall-subnational,11657262
+cod-ab-mli,boundaries/mli_admin_boundaries.geojson.zip,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/cod-ab-mli,655527
+wfp-food-prices-for-burkina-faso,wfp_prices/wfp_food_prices_bfa.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/wfp-food-prices-for-burkina-faso,7248204
+wfp-food-prices-for-burkina-faso,wfp_prices/wfp_markets_bfa.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/wfp-food-prices-for-burkina-faso,3307
+ucdp-data-for-burkina-faso,ucdp_conflict/conflict_data_bfa.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/ucdp-data-for-burkina-faso,1305818
+bfa-rainfall-subnational,rainfall/bfa-rainfall-subnat-full.csv,Creative Commons Attribution International (CC BY),https://data.humdata.org/dataset/bfa-rainfall-subnational,11772219
+cod-ab-bfa,boundaries/bfa_admin_boundaries.geojson.zip,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/cod-ab-bfa,22911896
+wfp-food-prices-for-niger,wfp_prices/wfp_food_prices_ner.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/wfp-food-prices-for-niger,7904969
+wfp-food-prices-for-niger,wfp_prices/wfp_markets_ner.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/wfp-food-prices-for-niger,7564
+ucdp-data-for-niger,ucdp_conflict/conflict_data_ner.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/ucdp-data-for-niger,479703
+ner-rainfall-subnational,rainfall/ner-rainfall-subnat-full.csv,Creative Commons Attribution International (CC BY),https://data.humdata.org/dataset/ner-rainfall-subnational,14004078
+cod-ab-ner,boundaries/ner_admin_boundaries.geojson.zip,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/cod-ab-ner,1645764
+wfp-food-prices-for-chad,wfp_prices/wfp_food_prices_tcd.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/wfp-food-prices-for-chad,16049498
+wfp-food-prices-for-chad,wfp_prices/wfp_markets_tcd.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/wfp-food-prices-for-chad,17637
+ucdp-data-for-chad,ucdp_conflict/conflict_data_tcd.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/ucdp-data-for-chad,296864
+tcd-rainfall-subnational,rainfall/tcd-rainfall-subnat-full.csv,Creative Commons Attribution International (CC BY),https://data.humdata.org/dataset/tcd-rainfall-subnational,18234124
+cod-ab-tcd,boundaries/tcd_admin_boundaries.geojson.zip,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/cod-ab-tcd,148527
+wfp-food-prices-for-senegal,wfp_prices/wfp_food_prices_sen.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/wfp-food-prices-for-senegal,6489084
+wfp-food-prices-for-senegal,wfp_prices/wfp_markets_sen.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/wfp-food-prices-for-senegal,3859
+ucdp-data-for-senegal,ucdp_conflict/conflict_data_sen.csv,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/ucdp-data-for-senegal,147854
+sen-rainfall-subnational,rainfall/sen-rainfall-subnat-full.csv,Creative Commons Attribution International (CC BY),https://data.humdata.org/dataset/sen-rainfall-subnational,11246488
+cod-ab-sen,boundaries/sen_admin_boundaries.geojson.zip,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO),https://data.humdata.org/dataset/cod-ab-sen,23561581
+fao_food_price_index,fao/food_price_indices_data.csv,FAO terms (attribution),https://www.fao.org/worldfoodsituation/foodpricesindex/en/,48110
+geoBoundaries gbOpen BFA ADM1,boundaries_old/geoBoundaries-BFA-ADM1.geojson,CC BY 4.0,https://www.geoboundaries.org/api/current/gbOpen/BFA/ADM1/,1144816
+geoBoundaries gbOpen BFA ADM1,boundaries_old/geoBoundaries-BFA-ADM1_simplified.geojson,CC BY 4.0,https://www.geoboundaries.org/api/current/gbOpen/BFA/ADM1/,349460
+geoBoundaries gbOpen BFA ADM2,boundaries_old/geoBoundaries-BFA-ADM2.geojson,CC BY 4.0,https://www.geoboundaries.org/api/current/gbOpen/BFA/ADM2/,2228501
+geoBoundaries gbOpen BFA ADM2,boundaries_old/geoBoundaries-BFA-ADM2_simplified.geojson,CC BY 4.0,https://www.geoboundaries.org/api/current/gbOpen/BFA/ADM2/,668468
+geoBoundaries gbOpen MLI ADM1,boundaries_old/geoBoundaries-MLI-ADM1.geojson,CC BY 4.0,https://www.geoboundaries.org/api/current/gbOpen/MLI/ADM1/,542287
+geoBoundaries gbOpen MLI ADM1,boundaries_old/geoBoundaries-MLI-ADM1_simplified.geojson,CC BY 4.0,https://www.geoboundaries.org/api/current/gbOpen/MLI/ADM1/,295387
+geoBoundaries gbOpen MLI ADM2,boundaries_old/geoBoundaries-MLI-ADM2.geojson,CC BY 4.0,https://www.geoboundaries.org/api/current/gbOpen/MLI/ADM2/,868547
+geoBoundaries gbOpen MLI ADM2,boundaries_old/geoBoundaries-MLI-ADM2_simplified.geojson,CC BY 4.0,https://www.geoboundaries.org/api/current/gbOpen/MLI/ADM2/,529026

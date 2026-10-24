@@ -1,0 +1,168 @@
+market_id,market,countryiso3,admin1,admin2,latitude,longitude
+543,Abala,NER,Tillaberi,Abala,14.94,3.43
+544,Abalak,NER,Tahoua,Abalak,15.45,6.28
+545,Aderbissinat,NER,Agadez,Aderbissinat,15.63,7.89
+546,Agadez Commune,NER,Agadez,Tchighozerine,16.97,7.99
+547,Aguie,NER,Maradi,Aguie,13.51,7.78
+548,Arlit,NER,Agadez,Arlit,18.74,7.39
+549,Ayorou,NER,Tillaberi,Ayerou,14.73,0.92
+550,Badaguichiri,NER,Tahoua,Illela,14.52,5.37
+551,Bakin Birgi,NER,Zinder,Tanout,14.26,8.79
+552,Bande,NER,Zinder,Magaria,13.18,8.89
+553,Bankilare,NER,Tillaberi,Bankillare,14.58,0.73
+554,Birnin Gaoure,NER,Dosso,Boboye,13.08,2.91
+555,Bonfeba,NER,Tillaberi,Tillaberi,14.38,1.21
+556,Bonkaney,NER,Niamey,Niamey,13.52,2.12
+557,Bouza,NER,Tahoua,Bouza,14.42,6.04
+558,Chadakori,NER,Maradi,Guidan Roumji,13.68,6.99
+559,Complexe,NER,Niamey,Niamey,13.52,2.12
+560,Dan Issa,NER,Maradi,Madarounfa,13.2,7.26
+561,Dan-Goulbi,NER,Maradi,Dakoro,13.98,6.55
+562,Diffa Commune,NER,Diffa,Diffa,13.32,12.61
+563,Dioundiou,NER,Dosso,Dioudiou,12.62,3.54
+564,Dogon Kiria,NER,Dosso,Doutchi,14.06,4.35
+565,Dogondoutchi,NER,Dosso,Doutchi,13.64,4.03
+566,Dole,NER,Zinder,Mirriah,13.8,8.99
+567,Dosso Commune,NER,Dosso,Dosso,13.05,3.19
+568,Dungass,NER,Zinder,Dungass,13.06,9.34
+569,El Kolta,NER,Maradi,Guidan Roumji,13.58,6.7
+570,Fabigui,NER,Dosso,Boboye,12.91,2.86
+571,Fadama,NER,Dosso,Tibiri,13.04,3.9
+572,Falwel,NER,Dosso,Loga,13.64,3.26
+573,Filingue,NER,Tillaberi,Filingue,14.35,3.32
+574,Galmi,NER,Tahoua,Malbaza,13.96,5.67
+575,Garare,NER,Maradi,Tessaoua,13.8,7.99
+576,Garhanga,NER,Tahoua,Keita,14.56,5.76
+577,Gaya,NER,Dosso,Gaya,11.88,3.45
+578,Gotheye,NER,Tillaberi,Gotheye,13.86,1.57
+579,Goudoumaria,NER,Diffa,Goudoumaria,13.71,11.19
+580,Goure,NER,Zinder,Goure,13.98,10.27
+581,Guidan Roumdji,NER,Maradi,Guidan Roumji,13.66,6.7
+582,Guidiguir,NER,Zinder,Goure,13.67,9.83
+583,Guidimouni,NER,Zinder,Mirriah,13.69,9.51
+584,Harobanda,NER,Niamey,Niamey,13.52,2.12
+585,Ingall,NER,Agadez,InGall,16.79,6.93
+586,Jataka,NER,Tahoua,Madaoua,13.77,6.17
+587,Kanembakache,NER,Maradi,Mayahi,13.96,7.67
+588,Kaou,NER,Tahoua,Tchintabara,15.6,5.38
+589,Karofane,NER,Tahoua,Bouza,14.31,6.15
+590,Katako,NER,Niamey,Niamey,13.52,2.12
+591,Kazoe,NER,Zinder,Goure,14.22,9.97
+592,Keita,NER,Tahoua,Keita,14.76,5.77
+593,Kirtachi,NER,Tillaberi,Kollo,12.79,2.48
+594,Konni,NER,Tahoua,Konni,13.79,5.25
+595,Kornaka,NER,Maradi,Dakoro,14.1,6.9
+596,Koundoumaoua,NER,Zinder,Takieta,13.66,8.36
+597,Loga,NER,Dosso,Loga,13.61,3.24
+598,Magaria,NER,Zinder,Magaria,13.18,8.5
+599,Maidjirgui,NER,Maradi,Tessaoua,13.74,8.13
+600,Maine Soroa,NER,Diffa,Maine Soroa,13.21,12.02
+601,Mangaize,NER,Tillaberi,Ouallam,14.68,1.95
+602,Maradi Commune,NER,Maradi,Madarounfa,13.5,7.1
+603,Matameye,NER,Zinder,Kantché,13.42,8.47
+604,Mayahi,NER,Maradi,Mayahi,13.96,7.67
+605,Mokko,NER,Dosso,Dosso,13.18,3.27
+606,Nguigmi,NER,Diffa,N'guigmi,14.25,13.11
+607,Ouallam,NER,Tillaberi,Ouallam,14.32,2.09
+608,Ourno,NER,Tahoua,Madaoua,14.3,6.45
+609,Petit Marche,NER,Niamey,Niamey,13.52,2.12
+610,Sabon Machi,NER,Maradi,Dakoro,13.99,6.59
+611,Sassoumbroum,NER,Zinder,Magaria,13.12,8.49
+612,Soubdou,NER,Zinder,Goure,13.79,10.53
+613,Tahoua Commune,NER,Tahoua,Tahoua,14.89,5.27
+614,Tamaske,NER,Tahoua,Keita,14.83,5.65
+615,Tanout,NER,Zinder,Tanout,14.97,8.89
+616,Tchadoua,NER,Maradi,Aguie,13.55,7.45
+617,Tchintabaraden,NER,Tahoua,Tchintabara,15.9,5.8
+618,Tera,NER,Tillaberi,Tera,14.01,0.75
+619,Tessaoua,NER,Maradi,Tessaoua,13.76,7.99
+620,Tillaberi,NER,Tillaberi,Tillaberi,14.21,1.45
+622,Torodi,NER,Tillaberi,Torodi,13.12,1.8
+623,Tounfafi,NER,Tahoua,Madaoua,14.29,6.42
+624,Wadata,NER,Niamey,Niamey,13.52,2.12
+625,Yeda,NER,Dosso,Boboye,13.19,2.76
+626,Balayara,NER,Tillaberi,Tagazar,13.78,2.95
+627,Tillaberi Commune,NER,Tillaberi,Tillaberi,14.21,1.45
+628,Dakoro,NER,Maradi,Dakoro,14.5,6.75
+629,Nguel Kolo,NER,Diffa,Diffa,13.32,12.62
+1281,Chetimari,NER,Diffa,Diffa,13.18,12.42
+1463,Zinder Commune,NER,Zinder,Mirriah,13.81,8.98
+5868,Foulatari,NER,Diffa,Diffa,13.55,12.16
+5869,Kindjandi,NER,Diffa,Bosso,13.81,13.16
+5870,Gagamari,NER,Diffa,Diffa,13.2,12.42
+5871,Gouderam ,NER,Diffa,Maine Soroa,13.92,12.06
+5872,Guilladje,NER,Dosso,Falmey,12.6,2.85
+5873,Sherke Haoussa,NER,Maradi,Mayahi,13.96,7.7
+5874,Batchaka,NER,Maradi,Guidan Roumji,13.68,6.48
+5875,Toki,NER,Maradi,Tessaoua,13.6,8.15
+5876,Tamaya,NER,Agadez,InGall,15.86,6.95
+5877,Tebaram,NER,Tahoua,Tahoua,14.84,4.52
+5878,Adagaye,NER,Tahoua,Abalak,16.23,6.5
+5879,Katohou,NER,Zinder,Kantché,13.56,8.45
+5880,Gayi,NER,Zinder,Dungass,13.32,9.46
+5881,Sabon Kafi,NER,Zinder,Tanout,14.75,8.97
+5882,Bangaza,NER,Zinder,Mirriah,13.4,9.24
+5935,Toumour,NER,Diffa,Bosso,13.67,13.13
+5936,Kabléwa,NER,Diffa,N'guigmi,13.98,12.97
+5937,Malam Blamari,NER,Diffa,Diffa,13.28,12.3
+5938,Wazey,NER,Dosso,Loga,13.68,3.35
+5939,Gabi,NER,Maradi,Madarounfa,13.24,7.07
+5940,Tibiri,NER,Maradi,Guidan Roumji,13.76,7.21
+9736,Boutti,NER,Diffa,Goudoumaria,13.71,11.19
+9737,Bermo,NER,Maradi,Dakoro,14.7,6.72
+9738,Dan Dadi,NER,Maradi,Guidan Roumji,13.57,6.67
+9739,Gazaoua,NER,Maradi,Gazaoua,13.53,7.92
+9740,Dargué,NER,Maradi,Guidan Roumji,13.87,6.76
+9741,Koona,NER,Maradi,Tessaoua,13.55,8.05
+9742,Bagaroua,NER,Tahoua,Bagaroua,14.63,4.35
+9743,Changnassou,NER,Tahoua,Bagaroua,14.63,4.35
+9744,Illela,NER,Tahoua,Illela,14.46,5.24
+9745,Toubout,NER,Tahoua,Illela,14.46,5.24
+9746,Ibohamane,NER,Tahoua,Keita,14.8,5.93
+9747,Affala,NER,Tahoua,Tahoua,15,5.56
+9748,Egawene,NER,Tahoua,Tassara,16.8,5.65
+9749,Tilemsess,NER,Tahoua,Tillia,16.12,4.78
+9750,Ballayara,NER,Tillaberi,Tagazar,13.73,2.88
+9751,Banibangou,NER,Tillaberi,Bani Bangou,15.16,2.69
+9752,Say,NER,Tillaberi,Say,13.1,2.37
+9753,Tamou,NER,Tillaberi,Say,12.75,2.18
+9754,Kobadje,NER,Tillaberi,Torodi,13.12,1.8
+9755,Belbeji,NER,Zinder,Tarka,14.68,7.99
+9756,Kassama,NER,Zinder,Damagaram Takaya,14.14,9.48
+9757,Kourni,NER,Zinder,Kantché,13.22,8.45
+9758,Mirriah,NER,Zinder,Mirriah,13.71,9.16
+9759,Tesker,NER,Zinder,Tasker,15.07,10.7
+9762,Famale,NER,Tillaberi,Tillaberi,14.21,1.45
+10338,Djajeri,NER,Diffa,Goudoumaria,13.72,11.29
+10339,Kilakam,NER,Diffa,Goudoumaria,13.56,11.74
+10340,Makalondi,NER,Tillaberi,Torodi,12.84,1.69
+10341,Mai yadia,NER,Zinder,Magaria,13.12,8.59
+10342,Batte,NER,Zinder,Tarka,14.69,8.05
+10344,Gagawa,NER,Zinder,Tanout,14.31,8.42
+10345,Sargagi,NER,Dosso,Loga,13.86,3.57
+10346,Batako,NER,Dosso,Loga,13.58,3.35
+10920,N'Gagam,NER,Diffa,Diffa,13.48,12.85
+10921,Moussa dey kaina,NER,Dosso,Loga,13.54,3.59
+10922,Ajé Korya,NER,Maradi,Dakoro,14.34,6.79
+10923,Guidan Sori,NER,Maradi,Guidan Roumji,13.53,6.9
+10924,Dogon Farou,NER,Maradi,Guidan Roumji,13.74,6.48
+10925,Guidan Amoumoune,NER,Maradi,Mayahi,14.26,7.39
+10926,Tabalak,NER,Tahoua,Abalak,15.14,5.73
+10927,Tajaé,NER,Tahoua,Illela,14.22,5.27
+10928,Tillia,NER,Tahoua,Tillia,16.15,4.78
+10929,Dargol,NER,Tillaberi,Gotheye,13.92,1.25
+10930,Dingazi,NER,Tillaberi,Ouallam,14.18,2.56
+10931,Kandadji,NER,Tillaberi,Tillaberi,14.76,1.26
+10932,Mazamni,NER,Zinder,Damagaram Takaya,14.14,9.44
+10933,Me Yadia,NER,Zinder,Dungass,13.06,9.43
+10934,Malawa,NER,Zinder,Dungass,13.03,9.62
+10935,Koundoumawa,NER,Zinder,Kantché,13.61,8.5
+10936,Kassama (Mirriah),NER,Zinder,Mirriah,13.83,9.08
+10937,Gada,NER,Zinder,Takieta,13.8,8.86
+10938,Bangui,NER,Tahoua,Madaoua,13.74,6.15
+10939,Baoudetta,NER,Zinder,Tanout,14.62,8.11
+10940,Ayawane,NER,Tahoua,Bouza,14.35,5.83
+10941,Ourafane,NER,Maradi,Tessaoua,14.07,8.13
+10942,Allakaye,NER,Tahoua,Bouza,14.41,5.74
+11291,Baoudeta,NER,Maradi,Tessaoua,13.62,8.11
+11292,Ollelewa,NER,Zinder,Tanout,14.73,8.63
