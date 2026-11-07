@@ -1,0 +1,68 @@
+country,iso3,region_code,region_name
+Burkina Faso,BFA,BF13,Centre
+Burkina Faso,BFA,BF46,Boucle du Mouhoun
+Burkina Faso,BFA,BF47,Cascades
+Burkina Faso,BFA,BF48,Centre-Est
+Burkina Faso,BFA,BF49,Centre-Nord
+Burkina Faso,BFA,BF50,Centre-Ouest
+Burkina Faso,BFA,BF51,Centre-Sud
+Burkina Faso,BFA,BF52,Est
+Burkina Faso,BFA,BF53,Hauts-Bassins
+Burkina Faso,BFA,BF54,Nord
+Burkina Faso,BFA,BF55,Plateau Central
+Burkina Faso,BFA,BF56,Sahel
+Burkina Faso,BFA,BF57,Sud-Ouest
+Chad,TCD,TCD01,Batha
+Chad,TCD,TCD02,Borkou
+Chad,TCD,TCD03,Chari-Baguirmi
+Chad,TCD,TCD04,Guera
+Chad,TCD,TCD05,Hadjer-Lamis
+Chad,TCD,TCD06,Kanem
+Chad,TCD,TCD07,Lac
+Chad,TCD,TCD08,Logone Occidental
+Chad,TCD,TCD09,Logone Oriental
+Chad,TCD,TCD10,Mandoul
+Chad,TCD,TCD11,Mayo Kebbi Est
+Chad,TCD,TCD12,Mayo-Kebbi Ouest
+Chad,TCD,TCD13,Moyen-Chari
+Chad,TCD,TCD14,Ouaddai
+Chad,TCD,TCD15,Salamat
+Chad,TCD,TCD16,Tandjile
+Chad,TCD,TCD17,Wadi Fira
+Chad,TCD,TCD18,N'Djamena
+Chad,TCD,TCD19,Barh-El-Gazel
+Chad,TCD,TCD20,Ennedi-Est
+Chad,TCD,TCD21,Sila
+Chad,TCD,TCD22,Tibesti
+Chad,TCD,TCD23,Ennedi Ouest
+Mali,MLI,ML01,Kayes
+Mali,MLI,ML02,Koulikoro
+Mali,MLI,ML03,Sikasso
+Mali,MLI,ML04,Segou
+Mali,MLI,ML05,Mopti
+Mali,MLI,ML06,Tombouctou
+Mali,MLI,ML07,Gao
+Mali,MLI,ML08,Kidal
+Mali,MLI,ML09,Bamako
+Niger,NER,NE001,Agadez
+Niger,NER,NE002,Diffa
+Niger,NER,NE003,Dosso
+Niger,NER,NE004,Maradi
+Niger,NER,NE005,Tahoua
+Niger,NER,NE006,Tillaberi
+Niger,NER,NE007,Zinder
+Niger,NER,NE008,Niamey
+Senegal,SEN,SN01,Dakar
+Senegal,SEN,SN02,Diourbel
+Senegal,SEN,SN03,Fatick
+Senegal,SEN,SN04,Kaffrine
+Senegal,SEN,SN05,Kaolack
+Senegal,SEN,SN06,Kedougou
+Senegal,SEN,SN07,Kolda
+Senegal,SEN,SN08,Louga
+Senegal,SEN,SN09,Matam
+Senegal,SEN,SN10,Saint Louis
+Senegal,SEN,SN11,Sedhiou
+Senegal,SEN,SN12,Tambacounda
+Senegal,SEN,SN13,Thies
+Senegal,SEN,SN14,Ziguinchor

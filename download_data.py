@@ -1,5 +1,7 @@
-"""Download raw datasets for the Sahel food prices project from HDX.
-Usage: python3 download_data.py   (saves into ./raw, writes ./raw/MANIFEST.csv)
+"""
+downloads the raw data from hdx (+ the old region maps from geoboundaries) into raw/
+also writes raw/MANIFEST.csv with the source and licence of every file
+the fao index isn't included, see raw/fao/SOURCE.txt
 """
 import csv, json, os, urllib.request, datetime
 
@@ -43,10 +45,7 @@ for pid, folder in jobs:
         print(f"{folder}/{fn}  {size/1e6:.1f} MB")
         rows.append([pid, f"{folder}/{fn}", p.get("license_title"), f"https://data.humdata.org/dataset/{pid}", size])
 
-with open(os.path.join(OUT, "MANIFEST.csv"), "w", newline="") as f:
-    w = csv.writer(f); w.writerow(["hdx_dataset", "file", "license", "source_url", "bytes"])
-    w.writerow(["# downloaded", datetime.date.today().isoformat(), "", "", ""]); w.writerows(rows)
-# Older boundaries (old 9 Mali / 13 Burkina Faso regions) from geoBoundaries
+# older boundaries (old 9 Mali / 13 Burkina Faso regions) from geoBoundaries
 os.makedirs(os.path.join(OUT, "boundaries_old"), exist_ok=True)
 for iso3 in ["MLI", "BFA"]:
     for lvl in ["ADM1", "ADM2"]:

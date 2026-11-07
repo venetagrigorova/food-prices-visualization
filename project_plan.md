@@ -4,7 +4,16 @@
 
 Food prices and food insecurity in the Sahel: how conflict, rainfall and global shocks show up in local market prices, and whether price rises come before worsening hunger.
 
-**Audience (pick one):** food security analysts at WFP or NGOs, or cash-assistance programme officers who set and adjust aid amounts.
+## Target audience
+
+**Cash-assistance programme officers** at WFP and NGOs: the people who decide how much money families get each month in cash transfers.
+
+- **What they know:** the region, the local foods and how cash programmes work. They are not data specialists.
+- **What they want to learn:** when and where food gets more expensive, how much, and whether a price jump is a normal seasonal rise or something new (conflict, a bad harvest, world prices).
+- **Why it matters to them:** if millet costs 30% more, the same transfer buys 30% less food. They have to decide when to raise the amount and for which regions.
+- **Why interactive:** each officer covers one region and a few foods. They need to filter to their own markets, compare with neighbouring regions, and check rain and conflict for the same months, which a static report can't do for everyone at once.
+
+We chose them over food security analysts because they make a concrete decision from prices, which every chart can be tied to.
 
 ## Candidate datasets (one per person)
 
@@ -15,192 +24,149 @@ Food prices and food insecurity in the Sahel: how conflict, rainfall and global 
 | C | Cadre Harmonisé food insecurity (West Africa's equivalent of IPC) | West and Central Africa food security working group via HDX, CC BY | 61 columns: population in phases 1–5 per district, current and projected, plus consumption, livelihood and nutrition indicators | 2014–2026, twice a year |
 | D | Subnational rainfall (based on CHIRPS) | WFP via HDX, CC BY | Rainfall every 10 days per region and district, long-term average, % of normal | 1981–Oct 2026 |
 
-Optional context: FAO Food Price Index (global benchmark), World Bank indicators, displacement data (Danish Refugee Council, IOM).
+Optional context: FAO Food Price Index (global benchmark, already included), World Bank indicators, displacement data (Danish Refugee Council, IOM).
+
+## Data and cleaning: status
+
+**Done.** Raw files are in `raw/` (about 178 MB, downloaded 24 Oct 2026). `clean_data.py` turns them into the tables in `clean/`.
+
+```
+python3 -m venv data-viz && source data-viz/bin/activate
+pip install -r requirements.txt
+python3 clean_data.py          # about 30 seconds
+```
+
+- **The team's rules are the constants at the top of `clean_data.py`** (countries, years, missing-data rule, foods). To change a rule, change it there and rerun. Never edit files in `clean/` by hand.
+- `clean/log.txt` has every count (rows dropped, series kept, missing values). Copy from it for G1 Part 4.
+- `clean/variables.csv` is the variable table (name, type, unit, description, % missing) for G1 Part 4.
+- `raw/MANIFEST.csv` lists every raw file with its source link, licence and download date. `download_data.py` downloads it all again from HDX.
+
+### Output tables
+
+| Table | One row per | Rows × columns | Used for |
+|---|---|---|---|
+| **`market_month_full.csv`** | market × food × month, plus region context (conflict, rain, Cadre Harmonisé, FAO) | **102,811 × 33** | **The final dataset for G1 Part 4.** Most A2 charts. |
+| `region_month.csv` | region × month: median price per food, number of markets, conflict by type, rain, Cadre Harmonisé, FAO | 8,040 × 36 | Region-level charts, G3 linked views. **Below 10,000 rows, so not the "final dataset".** |
+| `conflict_events.csv` | UCDP event | 4,262 × 16 | Event maps, timelines |
+| `ch_region_season.csv` | region × Cadre Harmonisé season (current and projected) | 1,921 × 19 | Hunger-phase questions |
+| `regions.csv` | region | 67 × 4 | Codes and names, for joining with maps |
+
+**Final dataset coverage:** 252 markets, 950 market × food series, 5 countries, 6 staple foods, 2015–2024.
+
+| Country | Markets | Series | Foods with data |
+|---|---|---|---|
+| Burkina Faso | 63 | 270 | all 6 |
+| Mali | 68 | 289 | all 6 |
+| Niger | 53 | 201 | millet, sorghum, maize, imported rice (no cowpeas, no local rice) |
+| Senegal | 41 | 128 | millet, sorghum, maize, local rice, imported rice (no cowpeas) |
+| Chad | 27 | 62 | millet, sorghum, maize, imported rice (local rice: 1 market only) |
+
+## Shared rules (proposed, already used by the script)
 
 
-## Downloaded data (Project Data folder)
+- [ ] **Countries:** Mali, Burkina Faso, Niger, Senegal, Chad. Chad is weakest (27 markets, fewer foods) but usable; it can be filtered out per chart.
+- [ ] **Time window:** 2015–2024 (UCDP ends in 2024)
+- [ ] **Retail prices only**
+- [ ] **Foods:** millet, sorghum, maize, local rice, imported rice, cowpeas, per kg
+- [ ] **Missing-data rule:** keep a market × food series if it reports **at least 60% of months** and has **no gap longer than 12 months**. (80% would leave Senegal with 88 series and Chad with 50; a 6-month gap limit would remove almost all of Senegal, which had a country-wide pause of about 8 months.)
+- [ ] **Outliers:** flagged in `outlier_flag`, **never removed**. Only 12 prices are flagged. Some extreme prices are real: Djibo (Burkina Faso) in late 2022 at 6× normal during the blockade is not flagged and is kept.
+- [ ] **Currency:** CFA francs (`price_lcu`), plus `price_index` (each series' 2019 average = 100) for comparing foods and countries
+- [ ] **Comparing countries or foods:** use `price_index`, not CFA francs (price levels differ a lot between foods)
+- [ ] **Averaging over markets:** use the median, not the mean, so one odd market doesn't pull the result
+- [ ] **Weak data:** don't use Senegal on its own for 2022 (collection pause) or Chad for rice (too few markets). Every chart says which countries it includes.
 
-All raw files are in `Info Visualization/Project Data/raw` (about 176 MB, downloaded 24 Oct 2026).
+## How each dataset was cleaned
 
-| Folder | Contents | Countries |
+Region code everywhere = the HDX code (`ML05`, `BF46`, `NE001`, `SN10`, `TCD18`). Time = month (`YYYY-MM`).
+
+### Regions
+
+67 regions (Burkina Faso 13, Mali 9, Niger 8, Senegal 14, Chad 23), with names taken from the Cadre Harmonisé.
+
+- Names are matched after removing case, accents, hyphens and the word "region" (`Tillabéri region` = `TILLABERI`). Two spellings are fixed by hand (`Koulikouro`, `Barh El Gazal`).
+- The Cadre Harmonisé writes `NE01` and `TD01`; converted to `NE001` and `TCD01`.
+- **Mali and Burkina Faso use the old regions** (9 and 13). The new official boundary files on HDX don't match the data: Burkina Faso's has the 17 new regions, and Mali's reuses codes (`ML09` is Taoudenni there but Bamako in the Cadre Harmonisé and rainfall data). The old boundaries come from geoBoundaries (`raw/boundaries_old`).
+
+### WFP prices
+
+1. Combine the 5 countries, drop the 38 "National Average" rows (not a market).
+2. Chad market 2280 "Oum Hadjer" has no location: use that of market 5623 "Oumhadjer" (same town, Batha region).
+3. Keep retail, 2015–2024, and the 6 staple foods per kg. **One raw name per food and country**, because Chad records several variants in the same market and month (merging them gave 403 clashes). Chad uses `Sorghum (red)` and `Maize (white)`, Burkina Faso `Sorghum (white)` and `Maize (white)`, Senegal `Maize (local)`. Senegal's imported maize is a different product and is left out.
+4. Apply the missing-data rule: 950 of 2,064 series kept.
+5. Flag outliers: price more than 3× or less than 1/3 of the series' 13-month rolling median. A rolling median follows sustained real spikes like Djibo, but catches single odd values (e.g. Filingue imported rice at 45 CFA, Mandelia millet at 15 CFA).
+6. Add `price_index` (2019 = 100), month-on-month and year-on-year % change (empty when the earlier month is missing, never filled in).
+
+### Rainfall
+
+1. Keep region level, drop preliminary values (only the latest weeks of 2026, outside the window anyway).
+2. Monthly total = sum of the three 10-day values, the same for the long-term average.
+3. `rain_anomaly_mm` = rainfall − normal. `rain_pct_normal` only where the normal is at least 10 mm: **in dry months the raw "% of normal" shows 100% because it is 0 mm ÷ 0 mm**, which is meaningless.
+4. `prev_rainy_season_pct_normal` gives every month the last finished June–September rainy season (Oct–Dec: this year's, Jan–Sep: last year's).
+
+### UCDP conflict
+
+1. 4,853 events in 2015–2024. Load with pandas, never Excel: some text fields contain line breaks.
+2. Drop the 585 events (12%) located only vaguely (`where_prec` 5–7).
+3. **Place events in regions by their coordinates**, not by UCDP's region names, which mix old and new regions (Ménaka, Timetrine, Borkou-Ennedi-Tibesti) and are missing for 101 events. Checked: placement agrees with UCDP's names for Mali, and all 246 Ménaka events land in old Gao. 6 events just outside their country's borders are dropped. 4,262 events kept.
+4. 105 events lasting into a later month are counted in their start month.
+5. Count events and deaths per region and month, also split by type of violence. Region-months without events are **0**, not missing.
+6. Senegal has only 4 events in 10 years: use it as the "no conflict" comparison and say so.
+
+### Cadre Harmonisé
+
+1. Keep the 5 countries, `usethisperiod == "Y"`, 2015–2024. `chtype` is lower-cased (it is spelled both ways).
+2. **One level per area, so nothing is counted twice** (131 rows dropped): finer rows (e.g. Bamako communes, Niamey arrondissements) are used only when the round has no district row for that area, and Chad's region-only rows only when the round has no district rows.
+3. 64 rows are areas not analysed in that round (no phase data). They are left out of the share instead of counting as "0 people in crisis". `pct_population_analysed` shows how much of a region was covered (21 region-seasons are partly covered).
+4. Sum districts to regions. Main measure: **`share_phase35`** = % of the population in phase 3 or worse. (The region's worst district phase is also kept, but it hardly varies: only 12 district rows ever reach phase 4.)
+5. In the monthly tables each current analysis is repeated over its months (Jan–May, Sep–Dec). **June–August only ever has projections**, kept separately as `ch_proj_share_phase35` in `region_month`. Never interpolate between analyses.
+6. **Missing current seasons:** Mali Jan–May 2022, Niger Jan–May 2024, Burkina Faso Sep–Dec 2024 (Burkina Faso stopped publishing). Show these as gaps.
+
+### FAO Food Price Index
+
+Header on row 3 of the CSV. Keeps the overall, cereals and oils indices (2014–2016 = 100), world level, joined on month only. The FAO file isn't in `download_data.py` because FAO's link changes monthly: see `raw/fao/SOURCE.txt`.
+
+### Combining
+
+- `market_month_full`: prices plus region context on `region_code + month`, FAO on month.
+- `region_month`: every region × month (67 × 120), so missing months are visible. Price per food = **median across the region's markets** (it resists outlier markets), plus the number of markets reporting.
+
+### Missing values in the final dataset (for G1 Part 4)
+
+| Variable | Missing | Why |
 |---|---|---|
-| `wfp_prices` | Food prices plus a market list (names, coordinates) | Mali, Burkina Faso, Niger, Chad, Senegal |
-| `ucdp_conflict` | Conflict events to end of 2024 | all 5 |
-| `rainfall` | Rainfall every 10 days by region and district, 1981–Oct 2026 | all 5 |
-| `cadre_harmonise` | Food insecurity phases for West and Central Africa, 2014–2026, plus the documentation PDF | covers all 5 |
-| `boundaries` | Official region and district boundaries as GeoJSON (zipped), for maps and for placing conflict events in regions | all 5 |
-| `fao` | FAO Food Price Index, monthly from 1990, the global benchmark | world |
+| `price_index` | 0.9% | series with fewer than 6 months of data in 2019 |
+| `pct_change_mom` | 6.0% | previous month not reported |
+| `pct_change_yoy` | 16.2% | same month last year not reported (always empty in a series' first 12 months) |
+| `ch_share_phase35` | 29.0% | June–August is never analysed "current" (25% of months), plus the missing seasons above |
 
-**Extra files:**
+In `region_month`, 87% of region-months have at least one price; Chad only 67%.
 
-- `raw/MANIFEST.csv` lists every file with its source link, licence and download date. Use it for G1 source links and the G3 repository.
-- `download_data.py` downloads everything again from HDX (`python3 download_data.py`), so everyone can get identical files. The FAO file isn't included because FAO's link changes monthly. `raw/fao/SOURCE.txt` explains where to get it.
+## Research questions
 
-**Before opening the files:**
+One per person (4 people). Each owner makes two A2 charts of **different types**: a main chart and a follow-up. The 8 chart types don't repeat across the team. Fill in the names at the meeting.
 
-- The WFP, rainfall and UCDP CSVs load normally: the first row is the header and data starts on row 2.
-- In the FAO CSV, the header (Date, Food Price Index, Meat, …) is on row 3 and row 4 is blank. Load with `pd.read_csv(f, skiprows=2)`, then drop empty rows and the empty columns.
-- The Cadre Harmonisé file covers 19 countries. Filter on `adm0_name` and keep rows with `usethisperiod == "Y"`. Some areas (for example Bamako) have finer-level rows, so don't double count when totalling a region.
-- The boundary zips need unzipping before use. The Burkina Faso and Senegal ones are large (about 23 MB) because they include detailed district levels.
+| # | Owner | Research question | Chart A | Chart B (follow-up) | Data notes |
+|---|---|---|---|---|---|
+| 1 | | **Seasons:** how much do staple prices rise in the lean season, and where is it worst? | Heatmap: month × food (or × region), colour = price index | Small multiples (one line chart per country): did the seasonal rise get bigger after 2020? | Millet is about 20% higher in Aug–Sep than in January. Matters for when transfers go up. |
+| 2 | | **Conflict:** do prices in a region rise faster after conflict there increases than in calmer regions? | Line chart lined up on the month violence escalated, 12 months before to 12 after, vs. calm regions | Map of markets coloured by how far their prices moved from the national median | Agree how to define "escalation" (e.g. first month with 5+ events). Correlation, not proof. Senegal is the low-conflict comparison. |
+| 3 | | **World prices:** did the 2022 global spike reach imported rice more than local grains? | Line chart of imported rice, local rice and millet index vs. the FAO world index, 2019–2024 | Dumbbell chart: 2021 vs. 2022 price per country and food | Use Mali, Burkina Faso, Senegal (Niger has no local rice, Chad too few markets). |
+| 4 | | **Rain:** are prices higher after a poor rainy season? | Scatter plot: last rainy season (% of normal) vs. year-on-year millet price change, one dot per region and year | Box plot of price changes by rain category (dry / normal / wet) | Use `prev_rainy_season_pct_normal` and `pct_change_yoy`. Agree the cut-offs for dry and wet (e.g. below 90%, above 110%). |
 
-## Processing each dataset
+**Possible follow-up (not assigned):** are regions with bigger price rises more likely to have more people in crisis at the next Cadre Harmonisé analysis? (connected scatter or slope chart). Mention it in G1 and keep it for G3.
 
-Checked against the downloaded files for all 5 countries. Do every step in a script (not by hand in Excel) so the dataset can be rebuilt and published in the G3 repository.
+## Chart ideas for G3
 
-**Common target for everything:** country code (ISO3) + region code (admin level 1, one standard format per country) + month (`YYYY-MM`).
-
-### A. WFP food prices (`wfp_prices`)
-
-1. **Combine** the 5 country files into one table and add a country column (Mali, Burkina Faso, Niger, Chad, Senegal).
-2. **Filter rows:**
-   - keep `pricetype == "Retail"` (Burkina Faso and Niger also have wholesale rows, priced per 100 kg)
-   - keep the shared time window (2015–2024)
-   - drop rows that aren't food: wages (`Wage (...)`), livestock (`Livestock (...)`) and Chad's exchange-rate rows (unit `USD/LCU`)
-3. **Pick the foods.** Keep the staples recorded across most markets: millet, sorghum, maize, local rice, imported rice, cowpeas (`Beans (niebe)`), and optionally vegetable oil and wheat flour. Chad mostly records pasta, okra, oil, garlic, salt and sugar rather than grains, so decide whether to drop it or treat it separately.
-4. **Standardise names and units.** Merge name variants (for example `Maize`, `Maize (white)` and `Maize (local)`, or `Sorghum` and `Sorghum (white)`) only if the team agrees they're the same product. Keep only per-kg prices, or convert (`500 G` × 2, `100 KG` ÷ 100). Oil is per litre: keep it separate.
-5. **Dates:** WFP dates are mid-month (`2015-01-15`), so convert them to `2015-01`.
-6. **Currency:** keep `price` in CFA francs (XOF for Mali, Burkina Faso, Niger and Senegal, XAF for Chad, both pegged to the euro at the same rate). Optionally add an index column (each series / its 2015 or 2019 average × 100) for comparing foods with different price levels.
-7. **Apply the missing-data rule:** count months reported per market × food in the window and keep series above the agreed threshold (for example 80%). Record how many markets and series survive per country and region: this goes in G1 Part 4.
-8. **Region code:** WFP gives region *names* (`admin1`) that need mapping to codes (see "Region lookup table" below). Markets also have latitude and longitude, used for the map.
-
-**Result:** `prices_market_month`, one row per market × food × month.
-
-### B. UCDP conflict events (`ucdp_conflict`)
-
-1. **Combine** the 5 country files.
-2. **Filter:** shared window (2015–2024). Note that Senegal's file ends in 2021 with few events and Burkina Faso's starts in 2016, so Senegal works as a low-conflict comparison.
-3. **Location precision:** `where_prec` says how exactly each event is located (1 = exact place, 2 = within 25 km, 3 = district, 4 = region, 5 = vaguer area such as "northern Mali", 6 = country only, 7 = international). **Keep 1–4** for regional counts. Report how many events were dropped.
-4. **Region code:** UCDP's `adm_1` names add " region" ("Gao region") and in Mali include newer regions (Ménaka, Timetrine). Either:
-   - assign each event to a region by its coordinates using the old region boundaries in `raw/boundaries_old` (section F), or
-   - strip " region" from `adm_1` and map Ménaka → Gao (checked: all 245 Ménaka events fall inside old Gao).
-5. **Dates:** use `date_start` → month. Events lasting longer than a month (where `date_end` is later) are rare, so assign them to the start month and note it.
-6. **Aggregate** to region × month: number of events, deaths (`best` = best estimate), and both split by `type_of_violence` (1 = government vs armed group, 2 = between armed groups, 3 = violence against civilians).
-7. **Fill gaps:** region-months with no events should be **0**, not missing.
-
-**Result:** `conflict_region_month`.
-
-### C. Cadre Harmonisé (`cadre_harmonise`)
-
-1. **Filter:** `adm0_name` in the 5 countries, `usethisperiod == "Y"`, and `chtype` = current (lowercase it first: some rows say "Current" with a capital).
-2. **Fix name inconsistencies:** for example Burkina Faso has both `Boucle Du Mouhoun` and `Boucle du Mouhoun`. Use codes (`adm1_pcod2`) instead of names wherever possible.
-3. **Avoid double counting:** some areas have rows at a finer level (Bamako has commune-level rows). Keep one level per area before totalling.
-4. **Aggregate districts to regions:** sum the population in each phase (`phase1`–`phase5`, `phase35`) and the total population. Then compute the **share in phase 3 or worse** (`phase35 / population`). If you also want a region-level phase, decide the rule (for example the worst district phase) and write it down.
-5. **Periods:** each row has a period label (`reference_label`: Sep–Dec or Jan–May) and year (`reference_year`). Keep that as a season key. To join with monthly data, give each month in the period the same value (Sep, Oct, Nov, Dec all get the Sep–Dec analysis), or aggregate monthly data up to these seasons. Never interpolate between analyses.
-6. **Projected rows** (the Jun–Aug lean season is only ever projected): if used at all, keep them in a separate column labelled as forecasts.
-
-**Result:** `ch_region_season` (and optionally spread to `ch_region_month`).
-
-### D. Rainfall (`rainfall`)
-
-1. **Combine** the 5 country files, keep `adm_level == 1` (regions). Level 2 is districts, which could be useful later for maps.
-2. **Columns:** one row per region per dekad (10-day period, dated the 1st, 11th and 21st). `rfh` = rainfall in mm for that dekad, `rfh_avg` = long-term average for that dekad, `rfq` = rainfall as % of normal. `r1h`/`r3h` are 1- and 3-month rolling totals.
-3. **Monthly totals:** sum `rfh` over the 3 dekads of each month, and sum `rfh_avg` the same way. Then compute **% of normal = rainfall / normal × 100**.
-4. **Seasonal totals:** the rainy season is roughly June–September. A rainy-season total per region and year is useful for comparing with prices in the following lean season.
-5. **Quality:** `version` is `final` or `prelim`. Preliminary values only appear for the most recent dekads. Drop them or flag them.
-
-**Result:** `rain_region_month`.
-
-### E. FAO Food Price Index (`fao`)
-
-1. Load with the header on row 3, drop blank rows and empty columns.
-2. Keep `Date` (already `YYYY-MM`), the overall index and the cereals and oils indices.
-3. World-level only: it joins to every region on month.
-
-**Result:** `fao_month`.
-
-### F. Boundaries (`boundaries` and `boundaries_old`)
-
-Mali and Burkina Faso recently reorganised their regions, so the newest official boundary files (`raw/boundaries`) don't match the data. **Use these files:**
-
-| Country | Data uses | Boundary file to use |
-|---|---|---|
-| Mali | 9 old regions | `raw/boundaries_old/geoBoundaries-MLI-ADM1.geojson` (9 regions); ADM2 = 50 districts (cercles) |
-| Burkina Faso | 13 old regions | `raw/boundaries_old/geoBoundaries-BFA-ADM1.geojson` (13 regions); ADM2 = 45 provinces |
-| Niger, Chad, Senegal | current regions | `raw/boundaries` (official HDX files, unzip first) |
-
-- Source of the old files: [geoBoundaries](https://www.geoboundaries.org), CC BY 4.0. Each comes with a `_simplified` version, which is smaller and better for D3 web maps.
-- The geoBoundaries files have **no HDX region codes**. Join on region names through the lookup table (`shapeName`). Note that Mali "Koulikouro" = "Koulikoro".
-- **Checked:** every WFP market (Mali 242, Burkina Faso 67) falls inside the region its `admin1` name says. UCDP events in Mali labelled "Ménaka region" fall inside old Gao region (245 events, 2015–2024).
-- District files (ADM2) match the Cadre Harmonisé district names (Mali 51, Burkina Faso 45) for district-level hunger maps.
-
-### Region lookup table (build this first)
-
-One small table per country, `country, region_code, name_wfp, name_ch, name_ucdp, name_boundary`, so every dataset can be translated to the same code. Differences found:
-
-- **Spelling and case:** accents (`Tillaberi` / `Tillabéri`, `Thies` / `Thiès`), hyphens (`Chari Baguirmi` / `Chari-Baguirmi`), upper case in the Chad boundaries and in the Burkina Faso WFP data (`BOUCLE DU MOUHOUN`), Mali `Tombouctou` / `Timbuktu`.
-- **Code formats:** Niger rainfall and boundaries use `NE001`, the Cadre Harmonisé uses `NE01`. Chad uses `TCD01` versus `TD01`. The numbers match: convert by adding a 0 for Niger and replacing `TD` with `TCD` for Chad (checked against names).
-- **Mali, Senegal, Burkina Faso:** codes match between the Cadre Harmonisé and rainfall (Burkina Faso only with the old 13 regions).
-
-## Combining into the final dataset
-
-1. **Build the region lookup table** (above).
-2. **Process each dataset** to its result table (A–E).
-3. **Create a complete grid:** every region × every month in the window, so missing months are visible instead of silently absent.
-4. **Join onto the grid** by `country + region_code + month`:
-   - prices: aggregate `prices_market_month` to region level, for example the **median** price per food across the region's markets (the median resists outlier markets). Also keep **the number of markets reporting** as a column.
-   - `conflict_region_month` (gaps filled with 0)
-   - `rain_region_month`
-   - `ch_region_month` (the season value repeated over its months), or keep a separate season-level table
-   - `fao_month`, joined on month only
-5. **Add calculated columns** if useful: monthly or yearly % price change, price index (base = 100), price gap between imported and local rice, rainfall anomaly in the previous rainy season, months since the last conflict event. Check with the TA whether calculated columns count toward the 10 variables.
-6. **Check the result:**
-   - row count (at least 10,000) and column count (at least 10)
-   - spot-check a few region-months against the raw files
-   - count missing values per column (this goes in G1 Part 4)
-
-**Final outputs (in `Project Data/clean`):**
-
-| Table | One row per | Used for |
-|---|---|---|
-| `prices_market_month.csv` | market × food × month | maps of markets, market-level charts, G3 |
-| `region_month.csv` | region × month (prices wide by food + conflict + rain + Cadre Harmonisé + FAO) | most A2 questions, linked G3 views |
-| `ch_region_season.csv` | region × Cadre Harmonisé season | questions about hunger phases |
-
-Plus a **variable table** (name, description, type: categorical, ordinal or quantitative, unit, source) for G1 Part 4.
-
-**Shared window:** 2015–2024 for anything involving conflict (UCDP ends in 2024). Price, rainfall and Cadre Harmonisé questions can run to 2026.
-
-## Shared rules to agree on
-
-- [ ] Countries: Mali, Burkina Faso, Niger, Senegal, Chad
-- [ ] Time window: 2015–2024
-- [ ] Retail prices only
-- [ ] Missing-data rule (for example, keep series with at least 80% of months)
-- [ ] Standard units (per kg) and food names
-- [ ] Currency: CFA francs, or index to a base period (base = 100)
-
-## Research question directions (the team writes the actual questions)
-
-At least 4 needed, one per person, no overlaps. Each A2 chart must be a different type.
-
-- Seasonal patterns by food and region (lean-season price rise)
-- Prices before and after conflict starts in a region, and how long the effect lasts
-- Local versus imported rice: how global shocks (2022) reach local markets
-- Rainfall shortfall versus later price rises
-- Do price rises come before a worse Cadre Harmonisé phase?
-- Which markets moved together during the 2022 spike, and which stayed stable?
-
-## Chart ideas
-
-Map of markets, calendar heatmap (food × month), event-aligned lines, correlation heatmap of markets, slope or dumbbell charts, scatter plot of rainfall against price change, horizon chart or small multiples.
-
-**G3 idea:** a map of markets linked both ways with a time-series view (click a market, brush a period), plus a conflict timeline and a seasonal heatmap. Requirements to cover: at least 4 techniques including a complex one, 3 interactions, 2 views linked both ways, tooltips.
+**G3 idea:** a map of markets linked both ways with a time-series view (click a market, brush a period), plus a conflict timeline and a seasonal heatmap. The four questions above already give the pieces. Requirements to cover: at least 4 techniques including a complex one, 3 interactions, 2 views linked both ways, tooltips.
 
 ## Limitations to note in G1
 
 - Correlation is not causation: 2022 combined conflict, drought and global price shocks.
-- The Cadre Harmonisé is twice-yearly, so it can't be matched month by month.
-- Conflict areas have more missing prices, which is a bias.
-- UCDP ends in 2024.
+- The Cadre Harmonisé is twice-yearly, so it can't be matched month by month, and June–August is only projected.
+- Conflict areas have more missing prices, which is a bias: the worst-hit markets are the ones most likely to drop out (e.g. Chad, northern Mali).
+- Coverage is uneven: Burkina Faso and Mali have many more series than Senegal and Chad, and some foods are missing in some countries.
+- UCDP ends in 2024 and records only events with at least one death, so low-level violence is not counted.
+- Prices are nominal (not adjusted for inflation). Inflation in the CFA zone is fairly low, but say so.
 
-## Meeting agenda (about 1 hour)
-
-1. Confirm the region and countries (5 min)
-2. Choose the audience (10 min)
-3. Assign candidate datasets A–D (5 min)
-4. Agree the shared rules above (15 min)
-5. Write research questions and assign owners (20 min)
-6. Deadlines: shared dataset, A2 drafts, team PDF with a buffer before TUWEL (5 min)
 
 ## Assignment checklist
 
@@ -214,6 +180,7 @@ Map of markets, calendar heatmap (food × month), event-aligned lines, correlati
 - UCDP Mali: https://data.humdata.org/dataset/ucdp-data-for-mali
 - Cadre Harmonisé: https://data.humdata.org/dataset/cadre-harmonise
 - Rainfall Mali: https://data.humdata.org/dataset/mli-rainfall-subnational
+- FAO Food Price Index: https://www.fao.org/worldfoodsituation/foodpricesindex/en/
 - Mali boundaries (new): https://data.humdata.org/dataset/cod-ab-mli
 - Old Mali and Burkina Faso boundaries: https://www.geoboundaries.org (CC BY 4.0)
 - ACLED terms: https://acleddata.com/eula
