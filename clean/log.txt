@@ -1,0 +1,31 @@
+regions: 67 {'BFA': 13, 'MLI': 9, 'NER': 8, 'SEN': 14, 'TCD': 23}
+wfp price rows: 443,919
+  retail staple prices 2015-01..2024-12: 141,357
+  series kept: 950 of 2064
+food  cowpeas  maize  millet  rice_imported  rice_local  sorghum
+iso3                                                            
+BFA        60     54      61             13          24       58
+MLI        38     45      58             48          48       52
+NER         0     47      53             53           0       48
+SEN         0     19      40             39          16       14
+TCD         0     12      23              6           1       20
+  markets: 252 {'BFA': 63, 'MLI': 68, 'NER': 53, 'SEN': 41, 'TCD': 27}
+  prices flagged as outliers: 12
+ucdp events 2015-01..2024-12: 4,853 {'BFA': 1816, 'MLI': 2295, 'NER': 575, 'SEN': 4, 'TCD': 163}
+  dropped, location vaguer than a region: 585
+  dropped, outside every region of their country: 6
+cadre harmonise rows dropped to avoid double counting: 131
+  region-seasons only partly analysed: 21
+missing values in market_month_full (%):
+        variable  missing_pct
+     price_index          0.9
+  pct_change_mom          6.0
+  pct_change_yoy         16.2
+ch_share_phase35         29.0
+       ch_season         28.9
+-> regions.csv: 67 rows x 4 columns
+-> market_month_full.csv: 102,811 rows x 33 columns
+-> region_month.csv: 8,040 rows x 36 columns
+-> conflict_events.csv: 4,262 rows x 16 columns
+-> ch_region_season.csv: 1,921 rows x 19 columns
+-> variables.csv: 33 rows x 5 columns
