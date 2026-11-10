@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+import json
+import zipfile
 
 df = pd.read_csv('clean/region_month.csv')
 print("Dataset size:", df.shape)
@@ -422,6 +424,68 @@ print("\nUnique market locations:", len(map_points))
 
 #Draw market locations
 fig, ax = plt.subplots(figsize=(13, 7))
+# Add country boundaries to Chart B
+
+boundary_folder = Path("raw/boundaries")
+
+for zip_path in sorted(boundary_folder.glob("*.zip")):
+
+    with zipfile.ZipFile(zip_path) as archive:
+
+        # Find the national boundary file (admin0)
+        boundary_files = [
+            name for name in archive.namelist()
+            if name.lower().endswith("_admin0.geojson")
+        ]
+
+        if not boundary_files:
+            print("No admin0 boundary:", zip_path.name)
+            continue
+
+        # Read GeoJSON directly from the ZIP archive
+        with archive.open(boundary_files[0]) as file:
+            boundary_data = json.load(file) 
+
+        #geographic features
+        features = boundary_data.get(
+            "features", [boundary_data]
+        )
+
+        for feature in features:
+            geometry = feature.get("geometry", feature)
+
+            if not geometry:
+                continue
+
+            geometry_type = geometry.get("type")
+            coordinates = geometry.get("coordinates", [])
+
+            if geometry_type == "Polygon":
+                polygons = [coordinates]
+
+            elif geometry_type == "MultiPolygon":
+                polygons = coordinates
+
+            else:
+                continue
+
+            #each country's polygon outline
+            for polygon in polygons:
+                exterior = polygon[0]
+
+                longitudes = [point[0] for point in exterior]
+                latitudes = [point[1] for point in exterior]
+
+                ax.fill(
+                    longitudes,
+                    latitudes,
+                    facecolor="#F2F2F2",
+                    edgecolor="#777777",
+                    linewidth=0.8,
+                    zorder=0
+                )
+
+        print("Boundary loaded:", zip_path.name)
 
 scatter = ax.scatter(
     map_points["longitude"],
@@ -465,11 +529,44 @@ plt.tight_layout()
 Path("figures").mkdir(exist_ok=True)
 
 plt.savefig(
-    "figures/chartB_millet_price_map_draft.png",
+    "figures/chartB_millet_price_map.png",
     dpi=300,
     bbox_inches="tight"
 )
 
-print("\nChart B draft saved successfully!")
+print("\nChart B saved successfully!")
 
+plt.show()
+#Country-level millet price comparison 2024
+
+millet_2024 = market_df[
+    (market_df["food"].str.lower() == "millet") &
+    (market_df["year"] == 2024)
+].copy()
+
+country_summary = (
+    millet_2024.groupby("country")["price_index"]
+    .median()
+    .sort_values(ascending=False)
+)
+
+print("\nMedian millet price index by country (2024):")
+print(country_summary.to_string())
+
+plt.figure(figsize=(10, 6))
+country_summary.plot(kind="bar")
+
+plt.title("Median Millet Price Index by Country (2024)")
+plt.xlabel("Country")
+plt.ylabel("Median millet price index")
+plt.grid(axis="y", alpha=0.3)
+plt.tight_layout()
+
+plt.savefig(
+    "figures/chartC_country_millet_median_2024.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+
+print("\nChart C saved successfully!")
 plt.show()
