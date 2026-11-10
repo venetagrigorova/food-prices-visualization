@@ -339,4 +339,137 @@ plt.savefig(
 
 print("\nComparison Chart A saved successfully!")
 
+#Inspecting market level data 
+market_df = pd.read_csv("clean/market_month_full.csv")
+
+print("\nMarket dataset size :", market_df.shape)
+print("\nMarket dataset colums:")
+print(market_df.columns.tolist())
+
+print("\nFirst 3 market obeservations:")
+print(market_df.head(3).to_string(index=False))
+plt.close()
+
+#Prepare market data for chart B
+#millet observation from 2024 
+
+millet_map = market_df[
+    (market_df["food"] == "millet") &
+    (market_df["year"] == 2024)
+].copy()
+
+
+#remove rows without prices / coordinates 
+millet_map = millet_map.dropna(
+    subset=["price_lcu", "latitude", "longitude"]
+)
+#calculate easch countrys median millet price in 2024
+millet_map["national_median"] = (
+    millet_map.groupby("country")["price_lcu"]
+    .transform("median")
+)
+
+
+#Calculate percentage diffecrence from national median
+millet_map["difference_pct"] = (
+    (millet_map["price_lcu"] -
+     millet_map["national_median"]) /
+    millet_map["national_median"] * 100
+)
+
+print("\n2024 millet observations:", len(millet_map))
+
+print("\nCountries with millet prices:")
+print(millet_map["country"].value_counts())
+
+print("\nUnique markets:", millet_map["market_id"].nunique())
+
+#Geographic price differences
+
+# Keep valid, positive millet prices
+millet_map = millet_map[
+    millet_map["price_lcu"] > 0
+].copy()
+
+# National median for each country AND month
+millet_map["national_median"] = (
+    millet_map.groupby(["country", "month"])["price_lcu"]
+    .transform("median")
+)
+
+# Difference from the national monthly median (%)
+millet_map["difference_pct"] = (
+    (millet_map["price_lcu"] / millet_map["national_median"] - 1)
+    * 100
+)
+
+# One point per market:median difference across 2024
+map_points = (
+    millet_map.groupby(
+        [
+            "country", "region_code", "market_id",
+            "market", "latitude", "longitude"
+        ],
+        as_index=False
+    )
+    .agg(
+        difference_pct=("difference_pct", "median"),
+        months_available=("month", "nunique")
+    )
+)
+
+print("\nUnique market locations:", len(map_points))
+
+#Draw market locations
+fig, ax = plt.subplots(figsize=(13, 7))
+
+scatter = ax.scatter(
+    map_points["longitude"],
+    map_points["latitude"],
+    c=map_points["difference_pct"].clip(-50, 50),
+    cmap="RdBu_r",
+    vmin=-50,
+    vmax=50,
+    s=38,
+    edgecolors="black",
+    linewidths=0.3,
+    alpha=0.9
+)
+
+# Label the countries
+for country, group in map_points.groupby("country"):
+    ax.text(
+        group["longitude"].median(),
+        group["latitude"].median() + 0.5,
+        country,
+        fontsize=9,
+        fontweight="bold",
+        ha="center"
+    )
+
+colorbar = fig.colorbar(scatter, ax=ax, shrink=0.8)
+colorbar.set_label(
+    "Median difference from national monthly median (%)"
+)
+
+ax.set_title(
+    "Millet Market Prices Relative to National Medians (2024)"
+)
+
+ax.set_xlabel("Longitude (degrees)")
+ax.set_ylabel("Latitude (degrees)")
+ax.grid(alpha=0.2)
+
+plt.tight_layout()
+
+Path("figures").mkdir(exist_ok=True)
+
+plt.savefig(
+    "figures/chartB_millet_price_map_draft.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+
+print("\nChart B draft saved successfully!")
+
 plt.show()
