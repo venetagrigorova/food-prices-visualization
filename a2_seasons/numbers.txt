@@ -1,0 +1,76 @@
+price rows (outliers excluded): 102,799
+rows with a seasonal index: 92,313 in 7,963 series-years, 950 series, 252 markets
+series-years with a lean-season rise: 7,873
+lean-season rise Jul-Sep vs Jan-Mar, median % by food (n series-years):
+  Cowpeas          9.6%  (IQR 1.3 to 25.5, n=875)
+  Maize           15.7%  (IQR 3.6 to 27.0, n=1564)
+  Millet          14.3%  (IQR 2.4 to 28.1, n=1982)
+  Imported rice    0.4%  (IQR 0.0 to 6.2, n=1177)
+  Local rice       6.5%  (IQR 0.7 to 11.6, n=690)
+  Sorghum         15.3%  (IQR 3.4 to 29.1, n=1585)
+Cadre Harmonise, % of analysed population in phase 3+ (5 countries, 2015-2024, pooled):
+  Jan-May (current): 4.8%
+  Sep-Dec (current): 4.5%
+  Jun-Aug (projected): 7.5%
+chart A, median seasonal index (yearly mean = 100):
+month_of_year    1     2      3      4      5      6      7      8      9      10     11     12
+food                                                                                           
+sorghum        90.7  93.2   96.0   98.7  100.7  102.2  104.3  107.5  107.2  103.1   98.1   94.8
+maize          91.5  93.2   95.3   98.9  101.0  102.4  105.0  107.6  107.1  100.3   94.9   94.6
+cowpeas        92.3  98.2  100.0  101.5  102.1  103.3  104.8  107.3  107.0   98.3   91.4   94.7
+millet         91.9  93.8   95.3   98.4  100.7  102.1  104.3  106.8  106.2  100.6   98.3   95.6
+rice_local     95.8  96.7   97.6   98.7  100.0  100.0  100.3  102.2  103.5  103.0  100.4   99.9
+rice_imported  99.1  99.7   99.8   99.9  100.0  100.0  100.0  100.0  100.2  100.1  100.0  100.0
+chart B: 50 regions shown, 8 dropped (< 10 millet series-years): Lac, Logone Occidental, Logone Oriental, Moyen-Chari, N'Djamena, Barh-El-Gazel, Kedougou, Sedhiou
+chart B: Spearman correlation, region median millet rise vs mean projected Jun-Aug phase 3+ share: 0.26, p = 0.065 (n=50)
+     country region_code       region_name  median  q25  q75  n  n_markets  ch_lean
+     Senegal        SN09             Matam     0.9 -5.7  4.6 20          3     15.3
+     Senegal        SN14        Ziguinchor     1.7  0.5  3.3 12          2      3.0
+Burkina Faso        BF13            Centre     3.6  1.0 23.4 20          2      2.9
+     Senegal        SN07             Kolda     3.7 -2.0  8.7 17          2      5.9
+     Senegal        SN10       Saint Louis     5.6  1.1 13.8 19          2      4.9
+     Senegal        SN01             Dakar     6.8 -2.9 11.0 15          2      2.4
+        Mali        ML09            Bamako     7.2  1.4 25.6 55          7      2.3
+        Mali        ML01             Kayes     7.6  0.1 16.9 38          5      2.5
+Burkina Faso        BF47          Cascades     7.9 -0.3 23.8 20          2      1.7
+     Senegal        SN03            Fatick     8.0 -0.2 17.3 40          6      4.4
+     Senegal        SN12       Tambacounda     8.3 -1.5 18.6 35          4     10.4
+     Senegal        SN08             Louga     8.7 -0.6 21.4 18          2      6.5
+        Mali        ML06        Tombouctou     8.9  3.0 25.9 39          5     11.8
+        Mali        ML07               Gao     9.8  0.0 18.1 38          5     21.3
+Burkina Faso        BF55   Plateau Central    10.2 -4.2 24.5 29          3      4.5
+Burkina Faso        BF50      Centre-Ouest    10.3 -1.2 30.6 48          5      4.3
+Burkina Faso        BF48        Centre-Est    10.6  3.0 24.6 49          5      3.8
+Burkina Faso        BF49       Centre-Nord    11.2 -0.6 22.3 39          4     14.6
+Burkina Faso        BF54              Nord    11.7 -1.8 24.7 40          4     13.3
+        Chad       TCD15           Salamat    12.3  6.1 26.7 14          2      6.0
+Burkina Faso        BF46 Boucle du Mouhoun    12.5  0.4 28.1 88          9      6.1
+        Chad       TCD01             Batha    13.0  4.7 26.9 13          2     13.5
+Burkina Faso        BF53     Hauts-Bassins    13.1  2.1 29.5 47          5      1.0
+        Mali        ML05             Mopti    13.5  2.6 28.4 78         11     12.4
+        Chad       TCD06             Kanem    13.5  7.9 21.0 16          2     22.2
+Burkina Faso        BF57         Sud-Ouest    13.9  3.0 26.8 50          5      3.6
+Burkina Faso        BF56             Sahel    14.1  6.2 23.4 59          6     29.1
+       Niger       NE001            Agadez    14.2  2.9 24.1 37          4      9.3
+Burkina Faso        BF51        Centre-Sud    14.3 -0.0 28.9 39          4      3.0
+        Mali        ML03           Sikasso    14.3  4.0 37.6 87         10      1.4
+        Chad       TCD03    Chari-Baguirmi    14.6 -1.5 57.0 14          2      4.2
+     Senegal        SN04          Kaffrine    15.0 -0.7 22.0 25          3      5.7
+     Senegal        SN05           Kaolack    15.8 -1.7 21.9 37          4      3.2
+Burkina Faso        BF52               Est    15.9  3.8 33.2 67          7     12.3
+        Mali        ML02         Koulikoro    16.4  0.0 30.8 69          8      2.5
+        Chad       TCD05      Hadjer-Lamis    16.6  8.6 33.4 14          2      9.4
+     Senegal        SN02          Diourbel    16.7  4.2 18.1 21          4      4.2
+       Niger       NE008            Niamey    17.6 12.8 26.5 39          4      6.9
+       Niger       NE004            Maradi    17.7  9.0 28.3 76          8      7.9
+        Mali        ML04             Segou    19.0 10.7 38.4 57          7      2.8
+        Chad       TCD04             Guera    19.1  3.6 31.2 10          1     11.9
+       Niger       NE006         Tillaberi    19.7  9.2 33.2 82         11     14.5
+        Chad       TCD21              Sila    20.1 12.5 38.2 15          2     12.1
+        Chad       TCD14           Ouaddai    20.9 13.5 31.0 17          2     13.9
+       Niger       NE007            Zinder    21.1  8.8 32.7 66          8      7.4
+     Senegal        SN13             Thies    21.6  8.7 33.0 33          4      3.1
+        Chad       TCD17         Wadi Fira    21.8  6.8 33.3 18          2     16.9
+       Niger       NE005            Tahoua    22.1  7.2 30.8 58          8      8.4
+       Niger       NE003             Dosso    25.0 10.4 35.4 48          5      6.4
+       Niger       NE002             Diffa    25.3 10.4 35.4 38          4     21.3
