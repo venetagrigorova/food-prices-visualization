@@ -1,0 +1,335 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{tabularx}
+\usepackage{array}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\usepackage[margin=2cm]{geometry}
+\sloppy
+
+% Shows the sketch if the file exists, otherwise a box with a note.
+\newcommand{\sketch}[2]{%
+  \IfFileExists{#1}{%
+    \includegraphics[width=\linewidth]{#1}%
+  }{%
+    \fbox{\parbox[c][6cm][c]{0.95\linewidth}{\centering\small Sketch missing: #1\\[0.5em] #2}}%
+  }%
+}
+
+\title{Information Visualization: Group Assignment 2\\[0.3em]
+\large Food Prices in the Sahel: A Planning Tool for Cash-Assistance Officers}
+\author{
+  Veneta Grigorova \\ Student no. 12332287 \\ \texttt{e12332287@student.tuwien.ac.at} \\[1em]
+  Amira Midžić \\ Student no. 12532872 \\ \texttt{e12532872@student.tuwien.ac.at} \\[1em]
+  Md. Emamul Hasan Emon \\ Student no. 12539926 \\ \texttt{e12539926@student.tuwien.ac.at} \\[1em]
+  Ahmad Akram \\ Student no. 12434717 \\ \texttt{e12434717@student.tuwien.ac.at}
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+%--------------------------------------------------------------------
+\section*{0. Basic Information}
+
+\textbf{Project title:} Food Prices in the Sahel: A Planning Tool for Cash-Assistance Officers.\\
+\textbf{Team members:} listed above with student numbers and e-mail addresses.
+
+%--------------------------------------------------------------------
+\section{Project Overview}
+
+\textbf{Problem.} The project looks at staple food prices in five Sahel countries (Burkina Faso, Chad, Mali, Niger and Senegal) from 2015 to 2024. Food prices in this region rise every year in the lean season, the months before the harvest. On top of this seasonal rise, prices can jump because of conflict, a poor rainy season or a rise in world prices. The visualization helps to separate a normal seasonal rise from an unusual one and to see where and when it happens.
+
+\textbf{Why it matters.} A World Bank study of the same five countries finds that mean real consumption is around 10.5\% lower in the lean season~\cite{lain2023}. Many humanitarian programmes give families a fixed amount of cash each month. If millet costs 30\% more, the same transfer buys 30\% less food. Programme officers therefore have to decide when to increase the transfer and for which regions. This decision depends on price data from hundreds of markets, which is difficult to read in tables or in a static report.
+
+\textbf{How the visualization supports analysis.} The tool is an exploration tool with several linked views. A map shows where prices are high compared with the rest of the country. A time-series view shows how prices in a selected region developed, together with conflict events, rainfall and the share of people in food crisis for the same months. A seasonal view shows the usual price pattern over the year, so that a user can judge if the current rise is normal. Filters for country, food and time period let each user focus on their own area.
+
+\textbf{Target users.} The main users are cash-assistance programme officers at the World Food Programme (WFP) and NGOs working in the Sahel. Each officer is usually responsible for one country or a few regions and a few staple foods. They know the region, the local foods and how cash programmes work, but they are not data specialists. They use the tool when they prepare the transfer plan for the next lean season, or when a sudden price rise is reported and they need to check whether it is local or national.
+
+\textbf{What users should learn or accomplish.} Users should be able to (1) see when prices in their region normally rise and by how much, (2) recognise when a rise is larger than usual, (3) find the regions and markets with the highest prices compared with the national level, and (4) check whether a price rise happened together with conflict, a poor rainy season, world price rises or a higher share of people in crisis. The tool shows co-occurrence and not causes. The final decision stays with the officer.
+
+%--------------------------------------------------------------------
+\section{Data Description}
+
+\subsection{Sources}
+
+The data combines five public sources, which were downloaded and merged for Group Assignment~1:
+
+\begin{itemize}
+  \item \textbf{WFP Food Prices} (World Food Programme, via HDX): monthly market prices recorded by WFP staff and partners. One dataset per country, e.g.\ \url{https://data.humdata.org/dataset/wfp-food-prices-for-mali}.
+  \item \textbf{UCDP Conflict Events} (Uppsala Conflict Data Program, via HDX): events of organized violence with at least one death, with date, location and estimated deaths. E.g.\ \url{https://data.humdata.org/dataset/ucdp-data-for-mali}.
+  \item \textbf{Subnational Rainfall based on CHIRPS} (WFP, via HDX): rainfall per region every 10 days and the long-term average. E.g.\ \url{https://data.humdata.org/dataset/mli-rainfall-subnational}.
+  \item \textbf{Cadre Harmonis\'e} (via HDX): the official food insecurity classification for West Africa, with the number of people in each of five phases per district, twice a year. \url{https://data.humdata.org/dataset/cadre-harmonise}.
+  \item \textbf{FAO Food Price Index} (FAO): monthly world price indices. \url{https://www.fao.org/worldfoodsituation/foodpricesindex/en/}.
+  \item \textbf{Region boundaries} (geoBoundaries, CC BY 4.0, \url{https://www.geoboundaries.org}; HDX for Niger, Senegal and Chad): polygons for the map. Mali and Burkina Faso use the old regions because the price and food insecurity data still use them.
+\end{itemize}
+
+\subsection{Data abstraction}
+
+The cleaned data consists of the following datasets. All cardinalities below were counted in the cleaned files.
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{l l l X}
+    \hline
+    \textbf{Dataset} & \textbf{Type} & \textbf{Items} & \textbf{One item is} \\
+    \hline
+    Market prices & table & 100K & price of one food in one market in one month (keys: market, food, month) \\
+    Region context & multidimensional table & 8K & one region in one month (keys: region, month) with conflict, rain, food insecurity and world prices \\
+    Conflict events & table with point positions & 4K & one UCDP event with date, position and deaths \\
+    Region boundaries & spatial geometry & 67 & polygon of one region (admin level 1) \\
+    Market locations & spatial points & 252 & position of one market (latitude, longitude) \\
+    \hline
+  \end{tabularx}
+  \caption{Datasets used in the visualization.}
+  \label{tab:datasets}
+\end{table}
+
+Table~\ref{tab:attributes} lists the original attributes that the visualization will use. Ranges are rounded. Price attributes are very skewed, so the range covering 99\% of the values is given as well.
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{l X l X}
+    \hline
+    \textbf{Attribute} & \textbf{Domain meaning} & \textbf{Type} & \textbf{Cardinality / range} \\
+    \hline
+    \texttt{country} & country & categorical & 5 \\
+    \texttt{region} & region (admin 1) & categorical & 67 (61 with prices) \\
+    \texttt{market} & market & categorical & 252 \\
+    \texttt{latitude}, \texttt{longitude} & market position & quantitative (spatial) & 7.7 to 18.7$^\circ$N, $-17.5$ to 22.3$^\circ$E \\
+    \texttt{food} & millet, sorghum, maize, local rice, imported rice, cowpeas & categorical & 6 \\
+    \texttt{month} & month of the price & ordered (time) & 120 (Jan 2015 to Dec 2024) \\
+    \texttt{month\_of\_year} & calendar month & ordered, cyclic & 12 \\
+    \texttt{year} & year & ordered & 10 \\
+    \texttt{price\_lcu} & retail price in CFA francs per kg & quantitative & 15 to 1.7K (99\% below 700) \\
+    \texttt{price\_index} & price compared with the market's 2019 average (2019 = 100) & quantitative & 10 to 920 (99\% below 260) \\
+    \texttt{outlier\_flag} & price more than 3 times above or below its 13-month median & categorical & 2 (12 prices flagged) \\
+    \texttt{conflict\_events} & UCDP events in the region in that month & quantitative (count) & 0 to 35 \\
+    \texttt{conflict\_deaths} & estimated deaths in the region in that month & quantitative (count) & 0 to about 600 \\
+    \texttt{type\_of\_violence} & state-based, non-state or one-sided violence (per event) & categorical & 3 \\
+    \texttt{prev\_rainy\_season\_pct\_normal} & last June--September rainy season compared with the long-term average & quantitative & 61\% to 227\% \\
+    \texttt{rain\_anomaly\_mm} & monthly rainfall minus the long-term average & quantitative & $-113$ to $+240$ mm \\
+    \texttt{ch\_share\_phase35} & share of the region's population in phase 3 (crisis) or worse & quantitative & 0\% to 52\% \\
+    \texttt{ch\_season} & Cadre Harmonis\'e analysis period (Jan--May, Jun--Aug, Sep--Dec) & ordered & 3 per year, 30 in total \\
+    \texttt{population} & population of the region (Cadre Harmonis\'e) & quantitative & 34K to 5.7M \\
+    \texttt{fao\_cereals\_index} & world cereal prices (2014--2016 = 100) & quantitative & 86 to 174 \\
+    \hline
+  \end{tabularx}
+  \caption{Original attributes used in the visualization.}
+  \label{tab:attributes}
+\end{table}
+
+Table~\ref{tab:derived} lists new attributes that will be derived for the visualization. The ranges of the first two were computed on the cleaned data. The period change depends on the time range the user selects, so no fixed range can be given.
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{l X l X}
+    \hline
+    \textbf{Derived attribute} & \textbf{Meaning and calculation} & \textbf{Type} & \textbf{Range} \\
+    \hline
+    \texttt{seasonal\_index} & price divided by the same market's average price for that food in that calendar year, $\times 100$ & quantitative & 11 to 301 (99\% between 71 and 131) \\
+    \texttt{ratio\_national} & price divided by the national median price for the same food and month & quantitative & 0.09 to 6.0 (99\% below 1.5) \\
+    \texttt{region\_price\_index} & median \texttt{price\_index} over all markets of a region, per food and month & quantitative & 32 to 598 \\
+    \texttt{normal\_season} & median \texttt{seasonal\_index} per calendar month over 2015--2019, per region and food & quantitative & to be computed \\
+    \texttt{period\_change} & change of \texttt{region\_price\_index} between the first and last month of the selected period (\%) & quantitative & depends on selection \\
+    \texttt{fao\_cereals\_2019} & FAO cereals index rebased so that its 2019 average is 100 & quantitative & to be computed \\
+    \texttt{rain\_category} & dry ($<90\%$ of normal), normal (90--110\%), wet ($>110\%$), from \texttt{prev\_rainy\_season\_pct\_normal} & ordered & 3 \\
+    \texttt{next\_ch\_share} & \texttt{ch\_share\_phase35} of the first current Cadre Harmonis\'e analysis after the selected period & quantitative & 0\% to 52\% \\
+    \hline
+  \end{tabularx}
+  \caption{Derived attributes (planned).}
+  \label{tab:derived}
+\end{table}
+
+\subsection{Preprocessing}
+
+\textbf{Already done (Group Assignment 1).} The cleaning is done by a Python script, and all rules are constants at the top of the script, so they can be changed and rerun.
+
+\begin{enumerate}
+  \item \textbf{Time window 2015--2024.} UCDP conflict data ends in 2024, so later prices could not be compared with conflict.
+  \item \textbf{Retail prices per kg of six staple foods only.} These are the foods that households buy most, and retail prices are what families pay with their cash transfer. One raw product name per food and country is used, because Chad records several variants of sorghum and maize in the same market and month, which would count the same food twice.
+  \item \textbf{Missing-data rule.} A market--food series is kept only if it has a price in at least 60\% of the months and no gap longer than 12 months. This kept 950 of 2,064 series. A stricter 80\% rule would leave only 88 series in Senegal and 50 in Chad, and a 6-month gap limit would remove almost all of Senegal, which had a country-wide pause in data collection of about 8 months.
+  \item \textbf{Outliers are flagged, not removed.} Only 12 prices are flagged. Extreme prices can be real, for example Djibo (Burkina Faso) in late 2022, so removing them would hide exactly the cases the users care about.
+  \item \textbf{Regions.} Names were matched across sources after removing case, accents and hyphens. Conflict events were placed in regions by their coordinates, because the UCDP region names mix old and new regions. 585 events with a location vaguer than a region were dropped, since they cannot be placed on the map.
+  \item \textbf{Food insecurity.} Districts were summed to regions, and areas that appear at two levels were counted only once (131 rows dropped). June--August is only ever a projection, so it is kept separately and never mixed with measured values.
+  \item \textbf{Joining.} Prices are joined with the region context on region and month, and with the FAO index on month.
+\end{enumerate}
+
+\textbf{Planned for the visualization.}
+
+\begin{enumerate}
+  \item \textbf{Compute the derived attributes} in Table~\ref{tab:derived} in the Python script, except \texttt{period\_change} and \texttt{next\_ch\_share}, which depend on the user's selection and are computed in the browser.
+  \item \textbf{Use medians when markets are combined} into a region or country. One market with an extreme price (such as Djibo) would pull a mean strongly, but a median stays close to the typical market. The single market stays visible in its own line.
+  \item \textbf{Reduce the file size.} The full market table is about 21 MB as CSV. Columns that are not shown (for example raw product names, USD prices, WFP food categories) will be dropped, and the data will be split per country, so the browser only loads the selected country.
+  \item \textbf{Simplify region polygons} so that the map draws quickly. Simplified files already exist for Mali and Burkina Faso; the HDX files for Niger, Senegal and Chad will be simplified in the same way.
+  \item \textbf{Keep missing values as gaps.} Missing months and missing Cadre Harmonis\'e seasons (for example Mali Jan--May 2022, Burkina Faso Sep--Dec 2024) will be shown as gaps and never interpolated, so users do not read trends that were not measured.
+  \item \textbf{Mark weak data.} Chad has only one market with local rice, and Senegal has a pause in 2022. These combinations will be shown with a warning label and not removed, so the data stays complete for users who know these limits.
+\end{enumerate}
+
+%--------------------------------------------------------------------
+\section{Task Analysis}
+
+\subsection{Domain tasks}
+
+\begin{description}
+  \item[D1. Know the normal lean-season rise.] ``When do millet prices in my region usually start to rise, and how much higher are they at the peak?'' \emph{Goal:} time the seasonal increase of the transfer, so that it starts before prices peak. \emph{Takeaway:} the months of the usual low and high and the size of the usual rise.
+
+  \item[D2. Recognise an unusual rise.] ``Prices in my region went up this year. Is this the normal lean-season rise, or more than usual?'' \emph{Goal:} decide whether the usual seasonal top-up is enough or whether the transfer must be increased further. \emph{Takeaway:} how far the current year differs from the normal pattern.
+
+  \item[D3. Find the hotspots.] ``Which regions and markets in my country are much more expensive than the rest of the country?'' \emph{Goal:} decide which areas get priority or a higher transfer. \emph{Takeaway:} a short list of regions and markets with the highest prices compared with the national level.
+
+  \item[D4. Explain a price jump.] ``Did the price jump happen together with more conflict, a poor rainy season, or world price rises?'' \emph{Goal:} judge whether the rise is local (likely to need a targeted response in that region) or national/global (likely to affect all regions). \emph{Takeaway:} which context factors changed at the same time as the price.
+
+  \item[D5. Connect prices to hunger.] ``Do the regions where prices rose most also have the most people in crisis at the next Cadre Harmonis\'e analysis?'' \emph{Goal:} support the allocation with a second source when reporting to donors and headquarters. \emph{Takeaway:} whether price rise and crisis share point to the same regions, and which regions break the pattern.
+\end{description}
+
+\subsection{Abstract tasks}
+
+The abstract tasks follow the typology of Brehmer and Munzner~\cite{brehmer2013} and Munzner~\cite{munzner2014}: an \emph{action} (why the task is done), a \emph{target} (what is looked for) and the \emph{data} attributes involved.
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{l l l X}
+    \hline
+    \textbf{ID} & \textbf{Action} & \textbf{Target} & \textbf{Data} \\
+    \hline
+    T1 & discover, summarize & trend (seasonal cycle) & \texttt{seasonal\_index} over \texttt{month\_of\_year} and \texttt{year}, for one \texttt{region} and \texttt{food} \\
+    T2 & compare & trend against a baseline & \texttt{region\_price\_index} / \texttt{seasonal\_index} over \texttt{month} against \texttt{normal\_season} \\
+    T3 & locate, compare & extremes and outliers (spatial) & \texttt{ratio\_national} and \texttt{period\_change} by \texttt{market} position (\texttt{latitude}, \texttt{longitude}) and \texttt{region} \\
+    T4 & browse, identify & features in time (co-occurring changes) & \texttt{region\_price\_index}, \texttt{conflict\_events}, \texttt{conflict\_deaths}, \texttt{prev\_rainy\_season\_pct\_normal}, \texttt{fao\_cereals\_2019} over \texttt{month} \\
+    T5 & explore, compare & correlation and outliers & \texttt{period\_change} against \texttt{next\_ch\_share}, one item per \texttt{region} \\
+    \hline
+  \end{tabularx}
+  \caption{Abstract tasks as \{action, target, data\} triplets.}
+  \label{tab:abstract}
+\end{table}
+
+The tasks use more than five distinct attributes, among them \texttt{month}, \texttt{food}, \texttt{region}, \texttt{price\_index} (and its derived forms), \texttt{conflict\_events}, \texttt{prev\_rainy\_season\_pct\_normal}, \texttt{ch\_share\_phase35} and \texttt{fao\_cereals\_index}.
+
+\subsection{Mapping}
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{l l X}
+    \hline
+    \textbf{Domain task} & \textbf{Abstract tasks} & \textbf{Why} \\
+    \hline
+    D1 normal rise & T1 & the usual pattern is a summary of the seasonal cycle over several years \\
+    D2 unusual rise & T2, T1 & the current year is compared with the summary from T1 \\
+    D3 hotspots & T3 & high-price places are spatial extremes \\
+    D4 explain a jump & T4, T3 & context attributes are browsed over the same months; the map shows whether the jump is local or everywhere \\
+    D5 prices and hunger & T5, T3 & correlation across regions; outlier regions are then located on the map \\
+    \hline
+  \end{tabularx}
+  \caption{Mapping from domain tasks to abstract tasks.}
+  \label{tab:mapping}
+\end{table}
+
+%--------------------------------------------------------------------
+\section{Design Sketches}
+
+\subsection{Interface overview}
+
+The interface is one page with a control bar and four linked views.
+
+\begin{itemize}
+  \item \textbf{Control bar (top).} Drop-down menus for country and food, a selector for the map measure (price level as index with 2019 = 100, price compared with the national median, price change in the selected period, people in crisis, conflict events) and a reset button.
+  \item \textbf{View A: Map (top left, largest view).} Regions as a choropleth coloured by the selected measure, and markets as dots on top. Dot colour shows \texttt{ratio\_national} on a diverging scale around 1. Regions without price data are grey.
+  \item \textbf{View B: Time series with context tracks (top right).} A line chart of \texttt{region\_price\_index} for the selected region (thick line), its markets (thin grey lines), the national median (dashed) and the world cereal index (dotted). Below it, three narrow tracks share the same time axis: conflict events per month (bars), last rainy season compared with normal (one bar per season), and the share of people in crisis (step line with gaps for June--August). A brush on the time axis selects a period.
+  \item \textbf{View C: Seasonal heatmap (bottom left).} Rows are years, columns are months January to December, colour is \texttt{seasonal\_index} on a diverging scale around 100. An extra row at the bottom shows \texttt{normal\_season} (median 2015--2019). Missing months are hatched.
+  \item \textbf{View D: Region scatter plot (bottom right).} One dot per region of the selected country, with \texttt{period\_change} on the x-axis and \texttt{next\_ch\_share} on the y-axis. Dot size shows population.
+\end{itemize}
+
+\textbf{Interactions and links.}
+\begin{itemize}
+  \item Clicking a region on the map (A) or a dot in the scatter plot (D) selects the region. B shows its lines, C shows its heatmap, and the region is highlighted in A and D. A and D are therefore linked in both directions.
+  \item Clicking a market dot in A highlights that market's line in B, and hovering a market line in B highlights the dot in A (two-way link between A and B).
+  \item Brushing a period in B recolours the map (A) by the price change in that period and recomputes the x-axis of the scatter plot (D).
+  \item Changing the food or country in the control bar updates all views.
+  \item Tooltips in all views show exact values, the number of markets behind a median, and a note when data is missing or weak.
+\end{itemize}
+
+% TODO (team): draw the sketches by hand or in a wireframing tool (no generative AI),
+% scan them in high resolution and save them in this folder with the names below.
+% At most five sketches in total.
+
+\begin{figure}[H]
+  \centering
+  \sketch{sketch1_layout.png}{Full layout: control bar, map (A), time series with context tracks (B), heatmap (C), scatter plot (D), with titles, legends and relative sizes.}
+  \caption{Sketch 1: Layout of the interface with all views, titles and widgets.}
+  \label{fig:sketch1}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \sketch{sketch2_select_region.png}{Interaction sequence 1: click a region on the map, the other views update.}
+  \caption{Sketch 2: Selecting a region on the map updates the time series, the heatmap and the highlight in the scatter plot.}
+  \label{fig:sketch2}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \sketch{sketch3_brush_period.png}{Interaction sequence 2: brush a period in the time series, the map and the scatter plot update.}
+  \caption{Sketch 3: Brushing a period in the time series recolours the map and the scatter plot.}
+  \label{fig:sketch3}
+\end{figure}
+
+\subsection{Justification of the views}
+
+\textbf{Map (A) for T3, D3, D4.} Officers think in regions and markets, and neighbouring regions often share a trade route or a conflict zone, so position on a map is the natural encoding for locating hotspots. A choropleth alone has a known problem here: large, almost empty northern regions (for example in Chad and Mali) would dominate the picture although they have few or no markets. The market dots put the attention on places where prices are actually measured. A sorted bar chart of regions would compare values more precisely, but it loses the spatial neighbourhood, and the scatter plot (D) already gives a precise ranking along its x-axis.
+
+\textbf{Time series with aligned context tracks (B) for T2, T4, D2, D4.} Position along a common time axis is the most precise way to compare when changes happen. The context attributes have very different units (events, \% of normal rain, \% of population), so they are placed in separate tracks that share the x-axis. A chart with two y-axes was rejected, because the choice of the two scales can make any two lines look related. The world cereal index is rebased to 2019 = 100, so it can be drawn on the same axis as the local price index without a second scale. The thin market lines show the spread behind the regional median and make single extreme markets visible.
+
+\textbf{Seasonal heatmap (C) for T1, T2, D1, D2.} The seasonal pattern needs 10 years $\times$ 12 months. Ten overlapping line charts would be cluttered, and a radial chart makes values hard to compare. The heatmap fits all 120 cells in a small space, and a vertical band of high values at the same months in many rows shows the lean season at a glance. Colour is less precise than position, so exact values are given in the tooltip and in the time series (B). The extra \texttt{normal\_season} row makes it easy to see if the current year is above the usual pattern. This view builds on the seasonal heatmap from Group Assignment~1.
+
+\textbf{Scatter plot (D) for T5, D5.} A scatter plot is the standard technique for checking a correlation between two quantitative attributes, and it shows regions that break the pattern (for example high crisis share but low price change). Using the first Cadre Harmonis\'e analysis \emph{after} the selected period keeps the order in time clear. With only 5 to 23 regions per country, the plot stays readable. A connected scatter plot over years was considered, but it becomes hard to read with many regions.
+
+\textbf{Linking.} The four views each answer a different part of the officer's question (where, when, compared with what, with what consequence). Linking them lets the user move from a hotspot on the map to its history and back without re-entering filters.
+
+%--------------------------------------------------------------------
+\section{Usage Scenario}
+
+\emph{The following scenario is hypothetical. All numbers in it come from the cleaned dataset.}
+
+A cash-assistance programme officer at an NGO in Dori is preparing the transfer plan for the 2025 lean season for the Sahel region of Burkina Faso. The programme gives families a fixed monthly amount, and the officer has to propose to the country office when to start the seasonal increase and whether the Sahel region needs more than the other regions. The officer opens the tool, selects \emph{Burkina Faso} and \emph{millet}, the main staple in the region.
+
+\textbf{Step 1: Where is millet expensive? (D3)} The officer brushes the year 2024 in the time series and sets the map to price level, so the map shows each region's median price index for 2024. The Sahel region is among the most expensive regions (median index 207, 2019 = 100), together with Nord (221), Centre-Nord (214) and Boucle du Mouhoun (208), while Cascades in the south-west is lowest (157). The rise is therefore not unique to the Sahel region, but the region belongs to the group with the highest prices.
+
+\textbf{Step 2: What is the normal lean season? (D1)} The officer clicks the Sahel region. In the heatmap, the \texttt{normal\_season} row (2015--2019) shows the lowest millet prices in November (index 89 compared with the yearly average) and the highest in August (110). For Burkina Faso as a whole, the same row goes only from 94 in December to 104 in June. The officer notes that the usual seasonal swing in the Sahel region is about twice as large as the national one, and that prices start to rise again from December.
+
+\textbf{Step 3: Was the last price rise normal? (D2, D4)} In the time series, the officer brushes 2021--2023 and sees that prices rose in all regions in 2022: the national median price index of millet went from 132 in 2021 to 203 in 2022, while the world cereal index (dotted line) also rose, from an average of 131 to 155 (2014--2016 = 100). One thin market line stands out: in Djibo, millet went from 300 CFA/kg in January 2022 to 1,464 CFA/kg in December 2022 and was about five times the national median in January 2023. Clicking the Djibo line highlights its dot on the map, in the west of the region. The conflict track below shows 78 events and about 1,000 deaths in the Sahel region in 2022 and 104 events in 2023, the highest number of the ten years. The rain track shows that the 2021 rainy season was only slightly below normal (93\%). Back on the map, the officer recolours by price change for 2023 and sees that in 2023 the median index fell in every other region of Burkina Faso but continued to rise in the Sahel region (from 182 to 199).
+
+\textbf{Step 4: Do prices and hunger point to the same region? (D5)} The scatter plot shows the share of people in crisis at the next Cadre Harmonis\'e analysis. The Sahel region has the highest share in the country in Jan--May 2022 (45\%), 2023 (37\%) and 2024 (23\%). A tooltip notes that the Sep--Dec 2024 analysis is missing for Burkina Faso, so no newer value can be shown.
+
+\textbf{Takeaways.} The officer concludes that (1) the seasonal increase in the Sahel region should start earlier and be larger than the national standard, because the normal swing there is about twice as large; (2) the 2022 rise was national and happened together with world price rises, but the extreme prices in Djibo and the continued rise in 2023 are specific to the region and happened in the years with the most conflict; and (3) the Cadre Harmonis\'e confirms that the Sahel region has the highest share of people in crisis. The officer uses these points in the proposal to the country office. The tool does not show that conflict caused the price rise; it shows that both happened at the same time and place, and the officer adds this limitation to the proposal.
+
+%--------------------------------------------------------------------
+\begin{thebibliography}{9}
+
+\bibitem{lain2023}
+J.~W.~Lain and S.~Brunelin (2023).
+\emph{Seasonal Deprivation in the Sahel Is Large, Widespread, and Can Be Anticipated}.
+World Bank Policy Research Working Paper 10541.
+\url{https://ideas.repec.org/p/wbk/wbrwps/10541.html}
+
+\bibitem{brehmer2013}
+M.~Brehmer and T.~Munzner (2013).
+A Multi-Level Typology of Abstract Visualization Tasks.
+\emph{IEEE Transactions on Visualization and Computer Graphics}, 19(12), 2376--2385.
+
+\bibitem{munzner2014}
+T.~Munzner (2014).
+\emph{Visualization Analysis and Design}. Chapter 3: Why: Task Abstraction. CRC Press.
+
+\end{thebibliography}
+
+\end{document}
